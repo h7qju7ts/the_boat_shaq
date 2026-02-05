@@ -92,6 +92,16 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'boat_shaq.wsgi.application'
 
+# Dev: print emails to the terminal instead of sending
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Dev: don't require/attempt email verification
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = False  # set True if you want to collect email
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
