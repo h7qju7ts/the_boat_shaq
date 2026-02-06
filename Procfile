@@ -1,0 +1,1 @@
+web: gunicorn boat_shaq.wsgi
