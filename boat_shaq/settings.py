@@ -24,6 +24,9 @@ DEBUG = os.environ.get("DEVELOPMENT") == "1"
 
 
 ALLOWED_HOSTS = [
+    "the-boat-shaq.herokuapp.com",
+    "the-boat-shaq-9d2a1e1c12e8.herokuapp.com",
+    ".herokuapp.com",
     "localhost",
     "127.0.0.1",
 ]
