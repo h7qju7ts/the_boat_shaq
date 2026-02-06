@@ -19,10 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-change-me")
 DEBUG = os.environ.get("DEVELOPMENT") == "1"
 
 
@@ -54,9 +51,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'boat_shaq.urls'
@@ -96,12 +95,19 @@ WSGI_APPLICATION = 'boat_shaq.wsgi.application'
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Dev: don't require/attempt email verification
+ACCOUNT_SIGNUP_FIELDS = [
+    "username*",
+    "email*",
+    "password1*",
+    "password2*",
+]
 ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_EMAIL_REQUIRED = False  # set True if you want to collect email
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "profile"        # your /accounts/profile/ view name
 LOGOUT_REDIRECT_URL = "home"
-
+ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+LOGIN_URL = "account_login"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
