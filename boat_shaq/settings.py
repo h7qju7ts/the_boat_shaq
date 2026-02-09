@@ -30,6 +30,11 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://the-boat-shaq.herokuapp.com",
+    "https://the-boat-shaq-9d2a1e1c12e8.herokuapp.com",
+]
+CSRF_TRUSTED_ORIGINS += ["http://localhost", "http://127.0.0.1"]
 
 
 # Application definition
