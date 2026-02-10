@@ -1,1 +1,1 @@
-web: gunicorn boat_shaq.wsgi
+web: gunicorn boat_shaq.wsgi:application
