@@ -56,19 +56,21 @@
 </head>
 <body>
 
-    <nav>
-        <a href="/">Home</a>
+    <nav class="main-nav">
+        <h1 class="logo">The Boat Shaq</h1>
 
-        {% if user.is_authenticated %}
+        <div class="nav-links">
+            <a href="/" class="btn-nav btn-primary-nav">Home</a>
+
+            {% if user.is_authenticated %}
             <span>Hi, {{ user.username }}</span>
-            <a href="{% url 'account_logout' %}">Logout</a>
-        {% else %}
-            <a href="{% url 'account_login' %}">Login</a>
-            <a href="{% url 'account_signup' %}">Sign up</a>
-        {% endif %}
+            <a href="{% url 'account_logout' %}" class="btn-nav btn-outline-nav">Logout</a>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="btn-nav btn-primary-nav">Login</a>
+            <a href="{% url 'account_signup' %}" class="btn-nav btn-outline-nav">Sign up</a>
+            {% endif %}
+        </div>
     </nav>
-
-    <hr>
 
     <main>
         {% block content %}

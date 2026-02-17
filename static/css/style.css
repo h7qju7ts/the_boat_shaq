@@ -1,9 +1,72 @@
-body {
-  font-family: "Vend Sans", sans-serif;
+
+
+
+
+
+p {
+   font-family: "Vend Sans", sans-serif;
+   text-align: center;
 }
 
-#home-title {
+.main-nav {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: khaki;
+}
+
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo {
+  margin: 0;   /* removes default h1 margin */
+  font-size: 24px;
   font-family: "Playwrite NZ Basic", sans-serif;
-  text-align: center;
 }
 
+.main-nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-nav {
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Primary button */
+.btn-primary-nav {
+  background-color: #6b5e00;      /* dark mustard */
+  color: white;
+}
+
+.btn-primary-nav:hover {
+  background-color: #574c00;
+  color: white;
+}
+
+/* Outline button */
+.btn-outline-nav {
+  border: 2px solid #6b5e00;
+  color: #6b5e00;
+  background-color: transparent;
+}
+
+.btn-outline-nav:hover {
+  background-color: #6b5e00;
+  color: white;
+}
+
+/* Accessibility: focus state */
+.btn-nav:focus {
+  outline: 3px solid #000;
+  outline-offset: 2px;
+}
