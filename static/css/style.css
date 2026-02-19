@@ -19,6 +19,13 @@ main {
   flex: 1;
 }
 
+input {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 /* Don’t globally center every paragraph */
 p {
   margin: 0 0 1rem;
@@ -133,6 +140,13 @@ p {
   opacity: 0.7;
   color: rgb(140, 143, 106);
 }
+
+/* Login Page */
+
+form p {
+  margin-bottom: 1rem;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
