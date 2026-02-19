@@ -1,81 +1,161 @@
 {% load static %}
 
-
 <!-- Favicon -->
-     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="{% static 'favicon/apple-touch-icon.png' %}"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="{% static 'favicon/favicon-32x32.png' %}"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="{% static 'favicon/favicon-16x16.png' %}"
+/>
+<link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
 
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-
-<head>
-
+  <head>
     {% block meta %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% endblock %}
-
-    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% endblock %} 
 
     {% block corecss %}
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-          rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
-          crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap" 
-          rel="stylesheet">      
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    {% endblock %}     
-    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    {% endblock %} 
+
     {% block corejs %}
+
     <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" 
-            integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" 
-            crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awesome Kit -->
+    <script
+      src="https://kit.fontawesome.com/220e80d55c.js"
+      crossorigin="anonymous"
+    ></script>
     {% endblock %}
-    
-    <title >{% block title %}The Boat Shaq{% endblock %}</title>
 
-    
-              
-
-</head>
-<body>
-
+    <title>{% block title %}The Boat Shaq{% endblock %}</title>
+  </head>
+  <body>
     <nav class="main-nav">
-        <h1 class="logo">The Boat Shaq</h1>
+      <a href="{% url 'home' %}" class="logo">The Boat Shaq</a>
 
-        <div class="nav-links">
-            <a href="/" class="btn-nav btn-primary-nav">Home</a>
+      <div class="nav-links">
+        <a href="/" class="btn-nav">Home</a>
 
-            {% if user.is_authenticated %}
-            <span>Hi, {{ user.username }}</span>
-            <a href="{% url 'account_logout' %}" class="btn-nav btn-outline-nav">Logout</a>
-            {% else %}
-            <a href="{% url 'account_login' %}" class="btn-nav btn-primary-nav">Login</a>
-            <a href="{% url 'account_signup' %}" class="btn-nav btn-outline-nav">Sign up</a>
-            {% endif %}
-        </div>
+        {% if user.is_authenticated %}
+        <span>Hi, {{ user.username }}</span>
+        <a href="{% url 'account_logout' %}" class="btn-nav">Logout</a>
+        {% else %}
+        <a href="{% url 'account_login' %}" class="btn-nav">Login</a>
+        <a href="{% url 'account_signup' %}" class="btn-nav">Sign up</a>
+        {% endif %}
+      </div>
     </nav>
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <main>{% block content %} {% endblock %}</main>
 
-</body>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-inner">
+          <div class="contact-info">
+            <div class="contact-title">
+              <strong>Contact Us:</strong>
+            </div>
+
+            <div class="contact-details">
+              <div>
+                <i class="fa-regular fa-paper-plane"></i>
+                contact@theboatshaq.com
+              </div>
+
+              <div>
+                <i class="fa-solid fa-square-phone"></i>
+                +1 (234) 567-890
+              </div>
+            </div>
+          </div>
+          <p class="copyright">
+            © <span id="year"></span> TheBoatShaq. All rights reserved.
+          </p>
+          <div class="social-media">
+            <a
+              href="https://www.facebook.com/theboatshaq"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+            >
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a
+              href="https://x.com/theboatshaq"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+            >
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/theboatshaq"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        </div>
+    </footer>
+    <!-- Auto_Updating Year for Footer Copyright -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

@@ -1,12 +1,30 @@
+/* ---------- Base ---------- */
 
-
-
-
-
-p {
-   font-family: "Vend Sans", sans-serif;
-   text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Vend Sans", sans-serif;
+  color: #25220d;
+}
+
+main {
+  flex: 1;
+}
+
+/* Don’t globally center every paragraph */
+p {
+  margin: 0 0 1rem;
+}
+
+/* ---------- Navbar ---------- */
 
 .main-nav {
   display: flex;
@@ -23,14 +41,17 @@ p {
 }
 
 .logo {
-  margin: 0;   /* removes default h1 margin */
-  font-size: 24px;
+  font-size: 25px;
   font-family: "Playwrite NZ Basic", sans-serif;
+  font-weight: 800;
+  color: #25220d;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.main-nav a {
-  text-decoration: none;
-  color: inherit;
+.logo:hover {
+  opacity: 0.6;
+  color: rgb(140, 143, 106);
 }
 
 .btn-nav {
@@ -39,34 +60,84 @@ p {
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  color: #25220d;
+  background: transparent;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-/* Primary button */
-.btn-primary-nav {
-  background-color: #6b5e00;      /* dark mustard */
-  color: white;
-}
-
-.btn-primary-nav:hover {
-  background-color: #574c00;
-  color: white;
-}
-
-/* Outline button */
-.btn-outline-nav {
-  border: 2px solid #6b5e00;
-  color: #6b5e00;
-  background-color: transparent;
-}
-
-.btn-outline-nav:hover {
+.btn-nav:hover {
   background-color: #6b5e00;
   color: white;
 }
 
-/* Accessibility: focus state */
-.btn-nav:focus {
-  outline: 3px solid #000;
-  outline-offset: 2px;
+/* ---------- Footer ---------- */
+
+.footer {
+  background-color: khaki;
+  padding: 6px 0;
+}
+
+.footer-container {
+  max-width: 1200px;   /* adjust to match your site */
+  margin: 0 auto;      /* centers it */
+  padding: 0 24px;     /* horizontal spacing */
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Contact */
+.contact-info {
+  display: flex;          /* title left, details right */
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column; /* stacks email + phone */
+  gap: 2px;
+}
+
+/* Copyright */
+.copyright {
+  margin: 0;  
+  font-size: 13px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+
+/* Social */
+.social-media {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.social-link {
+  color: #25220d;
+  text-decoration: none;
+  font-size: 40px;
+  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.social-link:hover {
+  opacity: 0.7;
+  color: rgb(140, 143, 106);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
