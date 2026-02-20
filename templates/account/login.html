@@ -17,7 +17,7 @@
           <label for="id_password" class="form-label">Password</label>
           {{ form.password }}
           <div class="mt-1">
-            <a href="{% url 'account_reset_password' %}">
+            <a class="link-action" href="{% url 'account_reset_password' %}">
               Forgot your password?
             </a>
           </div>
@@ -29,13 +29,13 @@
         </div>
 
         <p>
-          <button type="submit" class="btn-nav">Log in</button>
+          <button type="submit" class="btn btn-secondary">Log in</button>
         </p>
       </form>
 
       <p>
         No account?
-        <a href="{% url 'account_signup' %}">Sign up</a>
+        <a class="link-action" href="{% url 'account_signup' %}">Sign up</a>
       </p>
     </div>
   </div>

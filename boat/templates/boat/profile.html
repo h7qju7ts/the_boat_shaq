@@ -12,13 +12,13 @@
             <p><strong>Email:</strong> {{ user.email|default:"not set" }}</p>
 
             <p>
-                <a class="btn-nav" href="{% url 'account_change_password' %}">
+                <a class="btn btn-secondary" href="{% url 'account_change_password' %}">
                     Change Password
                 </a>
             </p>
 
             <p>
-                <a class="btn-nav" href="{% url 'account_logout' %}">
+                <a class="btn btn-secondary" href="{% url 'account_logout' %}">
                     Log out
                 </a>
             </p>

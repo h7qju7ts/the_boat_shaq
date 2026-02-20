@@ -26,7 +26,79 @@ input {
   border: 1px solid #ccc;
 }
 
-/* Don’t globally center every paragraph */
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Primary Button (Main Action) */
+.btn-primary {
+  background-color: #6b5e00;
+  color: white;
+  border: 2px solid #6b5e00;
+}
+
+.btn-primary:hover {
+  background-color: #4e4500;
+  border-color: #4e4500;
+  color: white;
+}
+
+/* Secondary Button (Neutral / Cancel) */
+.btn-secondary {
+  background-color: khaki;
+  color: #25220d;
+  border: 2px solid #25220d;
+}
+
+.btn-secondary:hover {
+  background-color: #6b5e00;
+  color: white;
+  border-color: #6b5e00;
+}
+
+/* Ghost Button (Navbar Style) */
+.btn-ghost {
+  background: transparent;
+  color: #25220d;
+  border: none;
+}
+
+.btn-ghost:hover {
+  background-color: #6b5e00;
+  color: white;
+}
+
+/* Small action links (auth pages) */
+
+.link-action {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+  background-color: khaki;
+  color: #25220d;
+  border: 2px solid #25220d;
+  border-radius: 7px;
+}
+
+.link-action:hover {
+  background-color: #6b5e00;
+  color: white;
+  border-color: #6b5e00;
+  
+}
+
+
+
 p {
   margin: 0 0 1rem;
 }
@@ -61,21 +133,7 @@ p {
   color: rgb(140, 143, 106);
 }
 
-.btn-nav {
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #25220d;
-  background: transparent;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
 
-.btn-nav:hover {
-  background-color: #6b5e00;
-  color: white;
-}
 
 /* ---------- Footer ---------- */
 

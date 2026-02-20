@@ -14,15 +14,17 @@
         {% csrf_token %}
 
         <p>
-          <button type="submit" class="btn-nav">
+          <button type="submit" class="btn btn-secondary">
             Confirm Log Out
           </button>
         </p>
-      </form>
 
-      <p>
-        <a href="{% url 'home' %}">Cancel and return home</a>
-      </p>
+         <p>
+           <a href="{% url 'home' %}" class="btn btn-secondary">
+             Cancel and Return Home
+           </a>
+         </p>
+      </form>   
     </div>
   </div>
 </div>
