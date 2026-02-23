@@ -26,10 +26,9 @@
     {% block meta %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% endblock %} 
+    {% endblock %}
 
     {% block corecss %}
-
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -47,29 +46,14 @@
     />
 
     <!-- Custom CSS -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/style.css' %}"
-    />
-    {% endblock %} 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% endblock %}
 
     {% block corejs %}
-
     <!-- Bootstrap JS Bundle -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
       crossorigin="anonymous"
     ></script>
 
@@ -82,28 +66,35 @@
 
     <title>{% block title %}The Boat Shaq{% endblock %}</title>
   </head>
+
   <body>
     <nav class="main-nav">
       <a href="{% url 'home' %}" class="logo">The Boat Shaq</a>
 
       <div class="nav-links">
-        <div class="nav-links">
         {% if user.is_authenticated %}
         <span>Hi, {{ user.username }}</span>
-        <a href="{% url 'profile' %}" class="btn btn-ghost">My Profile</a>
-        <a href="{% url 'account_logout' %}" class="btn btn-ghost">Logout</a>
+        <a href="{% url 'profile' %}" class="btn btn-ghost"
+          >My Profile</a
+        >
+        <a href="{% url 'account_logout' %}" class="btn btn-ghost"
+          >Logout</a
+        >
         {% else %}
-        <a href="{% url 'account_login' %}" class="btn btn-ghost">Login</a>
-        <a href="{% url 'account_signup' %}" class="btn btn-ghost">Sign up</a>
+        <a href="{% url 'account_login' %}" class="btn btn-ghost"
+          >Login</a
+        >
+        <a href="{% url 'account_signup' %}" class="btn btn-ghost"
+          >Sign up</a
+        >
         {% endif %}
         <a href="/" class="btn btn-ghost">Home</a>
       </div>
     </nav>
 
     <main>
-        {% block content %}
-
-        {% endblock %}
+      {% block content %}
+      {% endblock %}
     </main>
 
     <footer class="footer">
@@ -119,16 +110,17 @@
                 <i class="fa-regular fa-paper-plane"></i>
                 contact@theboatshaq.com
               </div>
-
               <div>
                 <i class="fa-solid fa-square-phone"></i>
                 +1 (234) 567-890
               </div>
             </div>
           </div>
+
           <p class="copyright">
             © <span id="year"></span> TheBoatShaq. All rights reserved.
           </p>
+
           <div class="social-media">
             <a
               href="https://www.facebook.com/theboatshaq"
@@ -138,6 +130,7 @@
             >
               <i class="fa-brands fa-facebook"></i>
             </a>
+
             <a
               href="https://x.com/theboatshaq"
               target="_blank"
@@ -146,6 +139,7 @@
             >
               <i class="fa-brands fa-x-twitter"></i>
             </a>
+
             <a
               href="https://www.instagram.com/theboatshaq"
               target="_blank"
@@ -156,11 +150,65 @@
             </a>
           </div>
         </div>
-        </div>
+      </div>
     </footer>
-    <!-- Auto_Updating Year for Footer Copyright -->
+
+    {% block postloadjs %}
+    <!-- Auto-updating year -->
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
     </script>
+
+    <!-- Password visibility toggle -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach((button) => {
+          button.addEventListener("click", function () {
+            const input = document.getElementById(
+              this.dataset.target
+            );
+            const icon = this.querySelector("i");
+
+            if (!input) return;
+
+            const showing = input.type === "text";
+            input.type = showing ? "password" : "text";
+            icon.classList.toggle("fa-eye", showing);
+            icon.classList.toggle("fa-eye-slash", !showing);
+          });
+        });
+      });
+    </script>
+
+    <!-- Caps Lock detector -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const passwordInputs = document.querySelectorAll(
+          'input[type="password"]'
+        );
+
+        passwordInputs.forEach((input) => {
+          const warning = document.getElementById(
+            `caps-warning-${input.id}`
+          );
+          if (!warning) return;
+
+          const updateCapsWarning = (e) => {
+            const capsOn =
+              e.getModifierState &&
+              e.getModifierState("CapsLock");
+            warning.style.display = capsOn ? "flex" : "none";
+          };
+
+          input.addEventListener("keydown", updateCapsWarning);
+          input.addEventListener("keyup", updateCapsWarning);
+          input.addEventListener("blur", () => {
+            warning.style.display = "none";
+          });
+        });
+      });
+    </script>
+    {% endblock %}
   </body>
 </html>

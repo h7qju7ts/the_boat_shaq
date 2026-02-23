@@ -1,4 +1,31 @@
-*.sqlite3
-*.pyc
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Django
+db.sqlite3
 staticfiles/
+media/
+
+# Node
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
