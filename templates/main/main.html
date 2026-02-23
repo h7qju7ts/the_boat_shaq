@@ -1,25 +1,5 @@
 {% load static %}
 
-<!-- Favicon -->
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="{% static 'favicon/apple-touch-icon.png' %}"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="{% static 'favicon/favicon-32x32.png' %}"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="{% static 'favicon/favicon-16x16.png' %}"
-/>
-<link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,6 +9,26 @@
     {% endblock %}
 
     {% block corecss %}
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'favicon/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicon/favicon-32x32.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicon/favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -68,96 +68,23 @@
   </head>
 
   <body>
-    <nav class="main-nav">
-      <a href="{% url 'home' %}" class="logo">The Boat Shaq</a>
+    {% include "includes/nav.html" %}
 
-      <div class="nav-links">
-        {% if user.is_authenticated %}
-        <span>Hi, {{ user.username }}</span>
-        <a href="{% url 'profile' %}" class="btn btn-ghost"
-          >My Profile</a
-        >
-        <a href="{% url 'account_logout' %}" class="btn btn-ghost"
-          >Logout</a
-        >
-        {% else %}
-        <a href="{% url 'account_login' %}" class="btn btn-ghost"
-          >Login</a
-        >
-        <a href="{% url 'account_signup' %}" class="btn btn-ghost"
-          >Sign up</a
-        >
-        {% endif %}
-        <a href="/" class="btn btn-ghost">Home</a>
-      </div>
-    </nav>
+    {# Shows Django messages (success/error/etc). Safe even if you don't use messages yet. #}
+    {% include "includes/toasts.html" %}
 
     <main>
       {% block content %}
+      
       {% endblock %}
     </main>
 
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-inner">
-          <div class="contact-info">
-            <div class="contact-title">
-              <strong>Contact Us:</strong>
-            </div>
-
-            <div class="contact-details">
-              <div>
-                <i class="fa-regular fa-paper-plane"></i>
-                contact@theboatshaq.com
-              </div>
-              <div>
-                <i class="fa-solid fa-square-phone"></i>
-                +1 (234) 567-890
-              </div>
-            </div>
-          </div>
-
-          <p class="copyright">
-            © <span id="year"></span> TheBoatShaq. All rights reserved.
-          </p>
-
-          <div class="social-media">
-            <a
-              href="https://www.facebook.com/theboatshaq"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-            >
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-
-            <a
-              href="https://x.com/theboatshaq"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-            >
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
-
-            <a
-              href="https://www.instagram.com/theboatshaq"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-            >
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include "includes/footer.html" %}
 
     {% block postloadjs %}
     <!-- Auto-updating year -->
     <script>
-      document.getElementById("year").textContent =
-        new Date().getFullYear();
+      document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
     <!-- Password visibility toggle -->
@@ -165,9 +92,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".toggle-password").forEach((button) => {
           button.addEventListener("click", function () {
-            const input = document.getElementById(
-              this.dataset.target
-            );
+            const input = document.getElementById(this.dataset.target);
             const icon = this.querySelector("i");
 
             if (!input) return;
@@ -184,20 +109,14 @@
     <!-- Caps Lock detector -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const passwordInputs = document.querySelectorAll(
-          'input[type="password"]'
-        );
+        const passwordInputs = document.querySelectorAll('input[type="password"]');
 
         passwordInputs.forEach((input) => {
-          const warning = document.getElementById(
-            `caps-warning-${input.id}`
-          );
+          const warning = document.getElementById(`caps-warning-${input.id}`);
           if (!warning) return;
 
           const updateCapsWarning = (e) => {
-            const capsOn =
-              e.getModifierState &&
-              e.getModifierState("CapsLock");
+            const capsOn = e.getModifierState && e.getModifierState("CapsLock");
             warning.style.display = capsOn ? "flex" : "none";
           };
 

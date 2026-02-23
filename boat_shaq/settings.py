@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'boats',
     'basket',
     'checkout',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -82,9 +83,13 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',  
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.tz',
             ],
         },
     },
@@ -119,9 +124,9 @@ ACCOUNT_SIGNUP_FIELDS = [
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
-LOGIN_REDIRECT_URL = "profile"        # your /accounts/profile/ view name
-LOGOUT_REDIRECT_URL = "home"
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "boats:profile"
+LOGOUT_REDIRECT_URL = "boats:home"
+ACCOUNT_LOGOUT_REDIRECT_URL = "boats:home"
 LOGIN_URL = "account_login"
 
 # Database
