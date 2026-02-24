@@ -95,10 +95,7 @@ input {
   background-color: #6b5e00;
   color: white;
   border-color: #6b5e00;
-  
 }
-
-
 
 p {
   margin: 0 0 1rem;
@@ -126,15 +123,15 @@ p {
   font-weight: 800;
   color: #25220d;
   text-decoration: none;
-  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition:
+    opacity 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .logo:hover {
   opacity: 0.6;
   color: rgb(140, 143, 106);
 }
-
-
 
 /* ---------- Footer ---------- */
 
@@ -144,9 +141,9 @@ p {
 }
 
 .footer-container {
-  max-width: 1200px;   /* adjust to match your site */
-  margin: 0 auto;      /* centers it */
-  padding: 0 24px;     /* horizontal spacing */
+  max-width: 1200px; /* adjust to match your site */
+  margin: 0 auto; /* centers it */
+  padding: 0 24px; /* horizontal spacing */
 }
 
 .footer-inner {
@@ -158,7 +155,7 @@ p {
 
 /* Contact */
 .contact-info {
-  display: flex;          /* title left, details right */
+  display: flex; /* title left, details right */
   align-items: center;
   gap: 12px;
   text-align: left;
@@ -173,12 +170,11 @@ p {
 
 /* Copyright */
 .copyright {
-  margin: 0;  
+  margin: 0;
   font-size: 13px;
   text-align: center;
   opacity: 0.8;
 }
-
 
 /* Social */
 .social-media {
@@ -192,7 +188,9 @@ p {
   color: #25220d;
   text-decoration: none;
   font-size: 40px;
-  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition:
+    opacity 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 .social-link:hover {
@@ -225,7 +223,7 @@ form input[type="text"] {
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 45px; 
+  padding-right: 45px;
 }
 
 /* Eye button inside input */
@@ -256,11 +254,81 @@ form input[type="text"] {
   gap: 6px;
 }
 
+/* -- Toast Styles */
+
+/* Container positioning */
+.toast-container {
+  top: 80px; /* move below navbar */
+  right: 16px;
+  z-index: 1100;
+  max-width: 320px; /* narrower */
+}
+
+/* Toast sizing */
+.toast {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Slide-in animation */
+.toast.toast-slide {
+  transform: translateX(120%);
+  opacity: 0;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+/* When Bootstrap adds .show, animate into place */
+.toast.toast-slide.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Header base style */
+.toast-header {
+  color: #fff;
+  border-bottom: 0;
+}
+
+/* Different colors based on message tags */
+.toast-header.success {
+  background: #198754; /* Bootstrap green */
+}
+
+.toast-header.error {
+  background: #dc3545; /* Bootstrap red */
+}
+.toast-header.warning {
+  background: #ffc107; /* yellow */
+  color: #212529;
+}
+.toast-header.info {
+  background: #0d6efd; /* blue */
+}
+
+/* Make close button visible on dark headers */
+.toast-header.success .btn-close,
+.toast-header.error .btn-close,
+.toast-header.info .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .toast-container {
+    left: 12px;
+    right: 12px;
+    top: 72px;
+    max-width: none; /* full-ish width on mobile */
   }
 }

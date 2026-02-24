@@ -68,9 +68,10 @@
   </head>
 
   <body>
+    
+
     {% include "includes/nav.html" %}
 
-    {# Shows Django messages (success/error/etc). Safe even if you don't use messages yet. #}
     {% include "includes/toasts.html" %}
 
     <main>
@@ -127,6 +128,17 @@
           });
         });
       });
+    </script>
+
+    <!-- Messages show and dismiss 2 seconds -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".toast").forEach(function (toastEl) {
+      // Reads delay from data-bs-delay="2000" on the element
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+       });
+     });
     </script>
     {% endblock %}
   </body>
