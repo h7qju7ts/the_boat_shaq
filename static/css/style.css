@@ -258,7 +258,7 @@ form input[type="text"] {
 
 /* Container positioning */
 .toast-container {
-  top: 80px; /* move below navbar */
+  top: 45px; /* move below navbar */
   right: 16px;
   z-index: 1100;
   max-width: 320px; /* narrower */
