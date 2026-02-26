@@ -112,7 +112,11 @@ SITE_ID = 1
 WSGI_APPLICATION = 'boat_shaq.wsgi.application'
 
 # Dev: print emails to the terminal instead of sending
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = BASE_DIR / "tmp_emails"
 
 # Dev: don't require/attempt email verification
 ACCOUNT_SIGNUP_FIELDS = [
