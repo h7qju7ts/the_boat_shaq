@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}{{ boat.name }} | The Boat Shaq{% endblock %}
+
+{% block content %}
+<section class="container py-4">
+  <h1 class="h3">{{ boat.name }}</h1>
+  <p class="text-muted mb-3">
+    {% if boat.brand %}{{ boat.brand }}{% endif %}
+    {% if boat.category %} • {{ boat.category }}{% endif %}
+    {% if boat.year %} • {{ boat.year }}{% endif %}
+  </p>
+
+  {% if boat.image %}
+    <img src="{{ boat.image.url }}" class="img-fluid rounded mb-3" alt="{{ boat.name }}">
+  {% endif %}
+
+  <p>{{ boat.description }}</p>
+</section>
+{% endblock %}
