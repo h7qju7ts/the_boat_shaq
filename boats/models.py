@@ -70,7 +70,13 @@ class Boat(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            base = slugify(self.name)
+            slug = base
+            i = 2
+            while Boat.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                i += 1
+                slug = f"{base}-{i}"
+            self.slug =slug    
         super().save(*args, **kwargs)
 
     def __str__(self):
