@@ -25,8 +25,10 @@ def catalog(request):
     if q:
         qs = qs.filter(
             Q(name__icontains=q) |
-            Q(brand__icontains=q) |
-            Q(type__icontains=q)
+            Q(short_description__icontains=q) |
+            Q(description__icontains=q) |
+            Q(brand__name__icontains=q) |       
+            Q(category__name__icontains=q)
         ).distinct()
 
     sort = request.GET.get("sort", "")

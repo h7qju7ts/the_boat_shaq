@@ -9,7 +9,7 @@ app_name = "boats"
 urlpatterns = [
     path("", home, name="home"),
     path("profile/", profile, name="profile"),
-    path("", views.catalog, name="catalog"),
+    path("catalog/", views.catalog, name="catalog"),
     path("<slug:slug>/", views.boat_detail, name="boat_detail"),
 ]
 

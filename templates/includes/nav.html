@@ -2,14 +2,23 @@
   <a href="{% url 'boats:home' %}" class="logo">The Boat Shaq</a>
 
   <div class="nav-links">
+
     {% if user.is_authenticated %}
-      <span>Hi, {{ user.username }}</span>
+      <span class="nav-greeting">
+        Hi, <strong>{{ user.username }}</strong>
+      </span>
+    {% endif %}
+
+    <a href="{% url 'boats:home' %}" class="btn btn-ghost">Home</a>
+    <a href="{% url 'boats:catalog' %}" class="btn btn-ghost">Catalog</a>
+
+    {% if user.is_authenticated %}
       <a href="{% url 'boats:profile' %}" class="btn btn-ghost">My Profile</a>
       <a href="{% url 'account_logout' %}" class="btn btn-ghost">Logout</a>
     {% else %}
       <a href="{% url 'account_login' %}" class="btn btn-ghost">Login</a>
       <a href="{% url 'account_signup' %}" class="btn btn-ghost">Sign up</a>
     {% endif %}
-    <a href="{% url 'boats:home' %}" class="btn btn-ghost">Home</a>
+
   </div>
 </nav>

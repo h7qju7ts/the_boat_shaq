@@ -108,6 +108,7 @@ p {
   align-items: center;
   padding: 12px 16px;
   background-color: khaki;
+  justify-content: space-between;
 }
 
 .nav-links {
@@ -115,6 +116,12 @@ p {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.nav-greeting {
+  font-size: 0.9rem;
+  margin-right: 8px;
+  white-space: nowrap;
 }
 
 .logo {
@@ -213,6 +220,20 @@ form input[type="text"] {
   padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+
+/* --- Catalog Page--- */
+
+/* -Form control- */
+
+.form-control:focus {
+  border-color: #6b5e00;
+  box-shadow: 0 0 0 0.3px #4e4500;
+}
+
+.form-select:focus {
+  border-color: #6b5e00;
+  box-shadow: 0 0 0 0.3px #4e4500;
 }
 
 /* Password field wrapper */
