@@ -69,15 +69,15 @@ class Boat(models.Model):
         ordering = ["-created_at"]
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            base = slugify(self.name)
-            slug = base
-            i = 2
-            while Boat.objects.filter(slug=slug).exclude(pk=self.pk).exists():
-                i += 1
-                slug = f"{base}-{i}"
-            self.slug =slug    
-        super().save(*args, **kwargs)
+       if not self.slug:
+          base = slugify(self.name)
+          slug = base
+          i = 2
+          while Boat.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+             slug = f"{base}-{i}"
+             i += 1
+          self.slug = slug
+       super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name            

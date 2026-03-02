@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .models import Boat
+from .models import Boat, Category
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def profile(request):
     return render(request, "profile/profile.html")
 
 def catalog(request):
-    qs = Boat.objects.all()
+    qs = Boat.objects.filter(is_available=True).select_related("brand", "category")
 
     q = request.GET.get("q", "").strip()
     if q:
@@ -27,9 +27,14 @@ def catalog(request):
             Q(name__icontains=q) |
             Q(short_description__icontains=q) |
             Q(description__icontains=q) |
-            Q(brand__name__icontains=q) |       
+            Q(brand__name__icontains=q) |
             Q(category__name__icontains=q)
         ).distinct()
+
+    #  category filter (by slug from the dropdown)
+    category_slug = request.GET.get("category", "").strip()
+    if category_slug:
+        qs = qs.filter(category__slug=category_slug)
 
     sort = request.GET.get("sort", "")
     if sort == "price_asc":
@@ -37,15 +42,20 @@ def catalog(request):
     elif sort == "price_desc":
         qs = qs.order_by("-price")
     elif sort == "newest":
-        qs = qs.order_by("-created_at")  # or "-id" if you don't have created_at
+        qs = qs.order_by("-created_at")
     elif sort == "name":
         qs = qs.order_by("name")
+    else:
+        qs = qs.order_by("-created_at")
 
     paginator = Paginator(qs, 12)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(request.GET.get("page"))
+
+    #  pass categories to template
+    categories = Category.objects.all().order_by("name")
 
     return render(request, "boats/catalog.html", {
         "boats": page_obj.object_list,
         "page_obj": page_obj,
+        "categories": categories,
     })
