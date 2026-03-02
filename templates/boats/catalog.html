@@ -32,17 +32,17 @@
       <div class="d-flex flex-wrap gap-2 mt-2">
         <select class="form-select form-select-sm" name="sort" style="max-width: 190px;">
           <option value="">Sort by</option>
-          <option value="price_asc" {% if request.GET.sort=="price_asc" %}selected{% endif %}>Price: Low → High</option>
-          <option value="price_desc" {% if request.GET.sort=="price_desc" %}selected{% endif %}>Price: High → Low
+          <option value="price_asc" {% if request.GET.sort == "price_asc" %}selected{% endif %}>Price: Low → High</option>
+          <option value="price_desc" {% if request.GET.sort == "price_desc" %}selected{% endif %}>Price: High → Low
           </option>
-          <option value="newest" {% if request.GET.sort=="newest" %}selected{% endif %}>Newest</option>
-          <option value="name" {% if request.GET.sort=="name" %}selected{% endif %}>Name A → Z</option>
+          <option value="newest" {% if request.GET.sort == "newest" %}selected{% endif %}>Newest</option>
+          <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>Name A → Z</option>
         </select>
 
         <select class="form-select form-select-sm" name="category" style="max-width: 190px;">
           <option value="">All categories</option>
           {% for c in categories %}
-          <option value="{{ c.slug }}" {% if request.GET.category==c.slug %}selected{% endif %}>
+          <option value="{{ c.slug }}" {% if request.GET.category == c.slug %}selected{% endif %}>
             {{ c.name }}
           </option>
           {% endfor %}

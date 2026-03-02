@@ -1,11 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
 
 from .models import Boat, Category
-
-# Create your views here.
 
 def home(request):
     return render(request, "home/home.html")
@@ -31,7 +29,6 @@ def catalog(request):
             Q(category__name__icontains=q)
         ).distinct()
 
-    #  category filter (by slug from the dropdown)
     category_slug = request.GET.get("category", "").strip()
     if category_slug:
         qs = qs.filter(category__slug=category_slug)
@@ -51,7 +48,6 @@ def catalog(request):
     paginator = Paginator(qs, 12)
     page_obj = paginator.get_page(request.GET.get("page"))
 
-    #  pass categories to template
     categories = Category.objects.all().order_by("name")
 
     return render(request, "boats/catalog.html", {

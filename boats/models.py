@@ -13,13 +13,13 @@ class Category(models.Model):
         ordering = ["name"]
 
     def save(self, *args, **kwargs):
-        if not self.slug :
+        if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name        
-    
+        return self.name
+
 class Brand(models.Model):
     name = models.CharField(max_length=120, unique=True)
 
@@ -27,34 +27,19 @@ class Brand(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return self.name    
-         
-   
+        return self.name
+
 class Boat(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=220, unique=True, blank=True)
 
-    brand = models.ForeignKey(
-        Brand,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="boats"
-    )
-
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="boats"
-    )
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True, related_name="boats")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="boats")
 
     description = models.TextField()
     short_description = models.CharField(max_length=225, blank=True)
 
-    price = models.DecimalField(max_digits=12, decimal_places=2, null=True,blank=True)
-
+    price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     length_ft = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     year = models.PositiveIntegerField(null=True, blank=True)
 
@@ -69,21 +54,15 @@ class Boat(models.Model):
         ordering = ["-created_at"]
 
     def save(self, *args, **kwargs):
-       if not self.slug:
-          base = slugify(self.name)
-          slug = base
-          i = 2
-          while Boat.objects.filter(slug=slug).exclude(pk=self.pk).exists():
-             slug = f"{base}-{i}"
-             i += 1
-          self.slug = slug
-       super().save(*args, **kwargs)
+        if not self.slug:
+            base = slugify(self.name)
+            slug = base
+            i = 2
+            while Boat.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{i}"
+                i += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name            
-    
-
-
-
-    
-
+        return self.name

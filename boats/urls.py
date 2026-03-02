@@ -7,8 +7,8 @@ from django.conf.urls.static import static
 app_name = "boats"
 
 urlpatterns = [
-    path("", home, name="home"),
-    path("profile/", profile, name="profile"),
+    path("", views.home, name="home"),
+    path("profile/", views.profile, name="profile"),
     path("catalog/", views.catalog, name="catalog"),
     path("<slug:slug>/", views.boat_detail, name="boat_detail"),
 ]
