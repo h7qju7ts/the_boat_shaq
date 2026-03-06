@@ -1,0 +1,290 @@
+[
+  {
+    "model": "boats.boat",
+    "pk": 1,
+    "fields": {
+      "name": "Ocean Explorer Kayak",
+      "slug": "ocean-explorer-kayak",
+      "category": 1,
+      "price": "799.99",
+      "description": "A durable recreational kayak designed for smooth paddling on lakes, rivers, and coastal waters.",
+      "image": "boats/ocean-explorer-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 2,
+    "fields": {
+      "name": "River Glide Kayak",
+      "slug": "river-glide-kayak",
+      "category": 1,
+      "price": "749.99",
+      "description": "A lightweight kayak built for stability and comfort, ideal for calm rivers and weekend adventures.",
+      "image": "boats/river-glide-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 3,
+    "fields": {
+      "name": "Rapid Wave Kayak",
+      "slug": "rapid-wave-kayak",
+      "category": 1,
+      "price": "899.99",
+      "description": "A sporty kayak with responsive handling, perfect for paddlers who want speed and control on the water.",
+      "image": "boats/rapid-wave-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 4,
+    "fields": {
+      "name": "Coastal Breeze Kayak",
+      "slug": "coastal-breeze-kayak",
+      "category": 1,
+      "price": "829.99",
+      "description": "A sleek touring kayak made for long-distance paddling along coastlines, estuaries, and open water.",
+      "image": "boats/coastal-breeze-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 5,
+    "fields": {
+      "name": "Adventure Trek Kayak",
+      "slug": "adventure-trek-kayak",
+      "category": 1,
+      "price": "949.99",
+      "description": "A versatile kayak with extra storage capacity for day trips, exploration, and outdoor adventure.",
+      "image": "boats/adventure-trek-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 6,
+    "fields": {
+      "name": "Sunset Paddle Kayak",
+      "slug": "sunset-paddle-kayak",
+      "category": 1,
+      "price": "699.99",
+      "description": "An easy-to-handle kayak designed for relaxed paddling, scenic outings, and beginner-friendly use.",
+      "image": "boats/sunset-paddle-kayak.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 7,
+    "fields": {
+      "name": "Wind Rider Sailboat",
+      "slug": "wind-rider-sailboat",
+      "category": 2,
+      "price": "12499.99",
+      "description": "A compact sailboat with elegant lines and dependable performance for coastal cruising and leisure sailing.",
+      "image": "boats/wind-rider-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 8,
+    "fields": {
+      "name": "Blue Horizon Sailboat",
+      "slug": "blue-horizon-sailboat",
+      "category": 2,
+      "price": "13999.99",
+      "description": "A stylish sailboat offering balanced handling and spacious deck design for enjoyable days at sea.",
+      "image": "boats/blue-horizon-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 9,
+    "fields": {
+      "name": "Ocean Whisper Sailboat",
+      "slug": "ocean-whisper-sailboat",
+      "category": 2,
+      "price": "15499.99",
+      "description": "A graceful mid-sized sailboat crafted for smooth sailing, comfort, and memorable coastal journeys.",
+      "image": "boats/ocean-whisper-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 10,
+    "fields": {
+      "name": "Seafarer Classic Sailboat",
+      "slug": "seafarer-classic-sailboat",
+      "category": 2,
+      "price": "16799.99",
+      "description": "A classic sailboat design combining timeless aesthetics with reliable performance for relaxed cruising.",
+      "image": "boats/seafarer-classic-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 11,
+    "fields": {
+      "name": "Silver Wind Sailboat",
+      "slug": "silver-wind-sailboat",
+      "category": 2,
+      "price": "14999.99",
+      "description": "A modern sailboat with efficient rigging and a streamlined hull suited for both beginners and enthusiasts.",
+      "image": "boats/silver-wind-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 12,
+    "fields": {
+      "name": "Island Dream Sailboat",
+      "slug": "island-dream-sailboat",
+      "category": 2,
+      "price": "18999.99",
+      "description": "A premium sailboat built for longer escapes, delivering comfort, elegance, and confident sailing ability.",
+      "image": "boats/island-dream-sailboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 13,
+    "fields": {
+      "name": "Thunder Jet Speedboat",
+      "slug": "thunder-jet-speedboat",
+      "category": 3,
+      "price": "22499.99",
+      "description": "A powerful speedboat engineered for thrilling rides, fast acceleration, and sporty open-water performance.",
+      "image": "boats/thunder-jet-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 14,
+    "fields": {
+      "name": "Wave Blaster Speedboat",
+      "slug": "wave-blaster-speedboat",
+      "category": 3,
+      "price": "23999.99",
+      "description": "A sleek speedboat with a modern profile, built for excitement, agility, and weekend water sports.",
+      "image": "boats/wave-blaster-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 15,
+    "fields": {
+      "name": "Velocity Pro Speedboat",
+      "slug": "velocity-pro-speedboat",
+      "category": 3,
+      "price": "25999.99",
+      "description": "A high-performance speedboat offering precision control, bold styling, and exceptional speed on the water.",
+      "image": "boats/velocity-pro-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 16,
+    "fields": {
+      "name": "Aqua Storm Speedboat",
+      "slug": "aqua-storm-speedboat",
+      "category": 3,
+      "price": "24599.99",
+      "description": "A dynamic speedboat designed for rapid cruising, energetic handling, and standout visual appeal.",
+      "image": "boats/aqua-storm-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 17,
+    "fields": {
+      "name": "Rapid Flash Speedboat",
+      "slug": "rapid-flash-speedboat",
+      "category": 3,
+      "price": "26999.99",
+      "description": "A bold and fast speedboat built for adrenaline-filled outings, smooth turns, and confident operation.",
+      "image": "boats/rapid-flash-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 18,
+    "fields": {
+      "name": "Turbo Wave Speedboat",
+      "slug": "turbo-wave-speedboat",
+      "category": 3,
+      "price": "27999.99",
+      "description": "A premium speedboat combining power, comfort, and striking design for unforgettable days on the water.",
+      "image": "boats/turbo-wave-speedboat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 19,
+    "fields": {
+      "name": "Deep Catch Fishing Boat",
+      "slug": "deep-catch-fishing-boat",
+      "category": 4,
+      "price": "15999.99",
+      "description": "A sturdy fishing boat designed for reliable performance, open-deck utility, and comfortable angling trips.",
+      "image": "boats/deep-catch-fishing-boat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 20,
+    "fields": {
+      "name": "Sea Hunter Fishing Boat",
+      "slug": "sea-hunter-fishing-boat",
+      "category": 4,
+      "price": "17499.99",
+      "description": "A capable fishing boat built for coastal and inland waters, offering durability and smart deck space.",
+      "image": "boats/sea-hunter-fishing-boat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 21,
+    "fields": {
+      "name": "Harbor Master Fishing Boat",
+      "slug": "harbor-master-fishing-boat",
+      "category": 4,
+      "price": "18999.99",
+      "description": "A practical fishing boat with dependable construction, generous storage, and comfortable seating layout.",
+      "image": "boats/harbor-master-fishing-boat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 22,
+    "fields": {
+      "name": "Blue Fin Fishing Boat",
+      "slug": "blue-fin-fishing-boat",
+      "category": 4,
+      "price": "16999.99",
+      "description": "A versatile fishing boat suited for casual anglers and serious outings, with a balanced and stable hull.",
+      "image": "boats/blue-fin-fishing-boat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 23,
+    "fields": {
+      "name": "Ocean Angler Fishing Boat",
+      "slug": "ocean-angler-fishing-boat",
+      "category": 4,
+      "price": "19999.99",
+      "description": "A spacious fishing boat designed for longer trips, gear storage, and dependable handling in varied waters.",
+      "image": "boats/ocean-angler-fishing-boat.webp"
+    }
+  },
+  {
+    "model": "boats.boat",
+    "pk": 24,
+    "fields": {
+      "name": "Tide Tracker Fishing Boat",
+      "slug": "tide-tracker-fishing-boat",
+      "category": 4,
+      "price": "18299.99",
+      "description": "A reliable fishing boat offering functional layout, durable construction, and smooth performance for anglers.",
+      "image": "boats/tide-tracker-fishing-boat.webp"
+    }
+  }
+]

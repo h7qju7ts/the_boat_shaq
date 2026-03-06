@@ -16,8 +16,16 @@ def boat_detail(request, slug):
 def profile(request):
     return render(request, "profile/profile.html")
 
-def catalog(request):
+def catalog(request, category_slug=None):
     qs = Boat.objects.filter(is_available=True).select_related("brand", "category")
+
+    if category_slug:
+        qs = qs.filter(category__slug=category_slug)
+    else:
+        category_slug = request.GET.get("category", "").strip()
+
+    if category_slug:
+        qs = qs.filter(category__slug=category_slug)
 
     q = request.GET.get("q", "").strip()
     if q:
@@ -45,7 +53,7 @@ def catalog(request):
     else:
         qs = qs.order_by("-created_at")
 
-    paginator = Paginator(qs, 12)
+    paginator = Paginator(qs, 6)
     page_obj = paginator.get_page(request.GET.get("page"))
 
     categories = Category.objects.all().order_by("name")

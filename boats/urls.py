@@ -10,6 +10,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("profile/", views.profile, name="profile"),
     path("catalog/", views.catalog, name="catalog"),
+    path("catalog/<slug:category_slug>/", views.catalog, name="catalog_by_category"),
     path("<slug:slug>/", views.boat_detail, name="boat_detail"),
 ]
 
