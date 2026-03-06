@@ -101,6 +101,40 @@ p {
   margin: 0 0 1rem;
 }
 
+/* -- Pagination -- */
+
+.btn-prev-next {
+  background-color: khaki;
+  color: #25220d;
+  border: 2px solid #25220d;
+  border-radius: 6px;
+  padding: 5px 12px;
+}
+
+.btn-prev-next:hover {
+  background-color: #6b5e00;
+  color: white;
+  border-color: #6b5e00;
+}
+
+.pagination .page-link {
+  border-radius: 10px;
+  margin: 0 2px;
+  color: #212529;
+  border: 1px solid #212529;
+}
+
+.pagination .page-link:hover {
+  color: white;
+  background-color: #6b5e00;
+}
+
+.pagination .page-link.active {
+  background-color: khaki;
+  border-color: #212529;
+  color: #212529;
+}
+
 /* ---------- Navbar ---------- */
 
 .main-nav {
