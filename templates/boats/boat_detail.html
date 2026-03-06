@@ -5,17 +5,37 @@
 
 {% block content %}
 <section class="container py-4">
-  <h1 class="h3">{{ boat.name }}</h1>
-  <p class="text-muted mb-3">
-    {% if boat.brand %}{{ boat.brand }}{% endif %}
-    {% if boat.category %} • {{ boat.category }}{% endif %}
-    {% if boat.year %} • {{ boat.year }}{% endif %}
-  </p>
 
-  {% if boat.image %}
-    <img src="{{ boat.image.url }}" class="img-fluid rounded mb-3" alt="{{ boat.name }}">
-  {% endif %}
+<div class="row g-4">
 
-  <p>{{ boat.description }}</p>
+  <div class="col-md-6">
+    {% if boat.image %}
+      <img src="{{ boat.image.url }}" class="img-fluid rounded" alt="{{ boat.name }}">
+    {% endif %}
+  </div>
+
+  <div class="col-md-6 d-flex flex-column">
+
+    <div class="d-flex justify-content-end mb-3">
+      <a href="{% url 'boats:catalog' %}?page={{ request.GET.page }}" 
+         class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left me-1"></i> Back to Catalog
+      </a>
+    </div>
+
+    <h1 class="h3">{{ boat.name }}</h1>
+
+    <p class="text-muted mb-3">
+      {% if boat.brand %}{{ boat.brand }}{% endif %}
+      {% if boat.category %} • {{ boat.category }}{% endif %}
+      {% if boat.year %} • {{ boat.year }}{% endif %}
+    </p>
+
+    <p>{{ boat.description }}</p>
+
+  </div>
+
+</div>
+
 </section>
 {% endblock %}

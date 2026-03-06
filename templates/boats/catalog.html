@@ -73,7 +73,7 @@
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between align-items-start gap-2">
             <h2 class="h6 mb-1">
-              <a class="text-decoration-none text-dark" href="{% url 'boats:boat_detail' boat.slug %}">
+              <a class="text-decoration-none text-dark" href="{% url 'boats:boat_detail' boat.slug %}?page={{ page_obj.number }}">
                 {{ boat.name }}
               </a>
             </h2>
@@ -104,7 +104,7 @@
               {% endif %}
             </div>
 
-            <a class="btn btn-sm btn-outline-dark" href="{% url 'boats:boat_detail' boat.slug %}">
+            <a class="btn btn-secondary" href="{% url 'boats:boat_detail' boat.slug %}?page={{ page_obj.number }}">
               View <i class="fa-solid fa-arrow-right ms-1"></i>
             </a>
           </div>
@@ -128,10 +128,7 @@
 
       {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}
-              {% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}
-              {% if request.GET.category %}category={{ request.GET.category }}&{% endif %}
-              page={{ page_obj.previous_page_number }}">
+        <a class="page-link" href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.previous_page_number }}">
           Previous
         </a>
       </li>
@@ -147,10 +144,7 @@
 
       {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}
-              {% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}
-              {% if request.GET.category %}category={{ request.GET.category }}&{% endif %}
-              page={{ page_obj.next_page_number }}">
+        <a class="btn btn-secondary" href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.next_page_number }}">
           Next
         </a>
       </li>
