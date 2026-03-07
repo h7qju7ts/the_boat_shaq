@@ -127,7 +127,7 @@
     <ul class="pagination justify-content-center gap-1 align-items-center">
 
     {% if page_obj.has_previous %}
-      <li class="page-item">
+      <li class="page-item me-2">
         <a class="btn btn-prev-next"
            href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort|urlencode }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category|urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">
           Previous
@@ -155,7 +155,7 @@
     {% endfor %}
 
     {% if page_obj.has_next %}
-      <li class="page-item">
+      <li class="page-item ms-1">
         <a class="btn btn-prev-next"
            href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort|urlencode }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category|urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">
           Next

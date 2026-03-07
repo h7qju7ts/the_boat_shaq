@@ -135,6 +135,14 @@ p {
   color: #212529;
 }
 
+.pagination .page-link:focus,
+.pagination .page-link:active,
+.btn-prev-next:focus,
+.btn-prev-next:active {
+    outline: none;
+    box-shadow: none;
+}
+
 /* ---------- Navbar ---------- */
 
 .main-nav {
