@@ -30,7 +30,7 @@
       </div>
 
       <div class="d-flex flex-wrap gap-2 mt-2">
-        <select class="form-select form-select-sm" name="sort" style="max-width: 190px;">
+        <select class="form-select form-select-sm" name="sort" style="max-width: 190px;" onchange="this.form.submit()">
           <option value="">Sort by</option>
           <option value="price_asc" {% if request.GET.sort == "price_asc" %}selected{% endif %}>
             Price: Low → High
@@ -46,7 +46,7 @@
           </option>
         </select>
 
-        <select class="form-select form-select-sm" name="category" style="max-width: 190px;">
+        <select class="form-select form-select-sm" name="category" style="max-width: 190px;" onchange="this.form.submit()">
           <option value="">All categories</option>
           {% for c in categories %}
           <option value="{{ c.slug }}" {% if request.GET.category == c.slug %}selected{% endif %}>
@@ -98,7 +98,7 @@
           <div class="mt-auto d-flex justify-content-between align-items-center">
             <div class="fw-semibold">
               {% if boat.price %}
-              £{{ boat.price }}
+              £{{ boat.price|floatformat:2 }}
               {% else %}
               <span class="text-muted">Price on request</span>
               {% endif %}

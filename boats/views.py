@@ -19,15 +19,13 @@ def profile(request):
 def catalog(request, category_slug=None):
     qs = Boat.objects.filter(is_available=True).select_related("brand", "category")
 
-    if category_slug:
-        qs = qs.filter(category__slug=category_slug)
-    else:
-        category_slug = request.GET.get("category", "").strip()
-
-    if category_slug:
-        qs = qs.filter(category__slug=category_slug)
-
     q = request.GET.get("q", "").strip()
+    sort = request.GET.get("sort", "").strip()
+    selected_category = category_slug or request.GET.get("category", "").strip()
+
+    if selected_category:
+        qs = qs.filter(category__slug=selected_category)
+
     if q:
         qs = qs.filter(
             Q(name__icontains=q) |
@@ -37,11 +35,6 @@ def catalog(request, category_slug=None):
             Q(category__name__icontains=q)
         ).distinct()
 
-    category_slug = request.GET.get("category", "").strip()
-    if category_slug:
-        qs = qs.filter(category__slug=category_slug)
-
-    sort = request.GET.get("sort", "")
     if sort == "price_asc":
         qs = qs.order_by("price")
     elif sort == "price_desc":

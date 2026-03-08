@@ -32,6 +32,16 @@
     </p>
 
     <p>{{ boat.description }}</p>
+    
+    <!-- Pricing -->
+    <div class="fw-semibold">
+       {% if boat.price %}
+       £{{ boat.price|floatformat:2 }}
+       {% else %}
+       <span class="text-muted">Price on request</span>
+              {% endif %}
+    </div>        
+            
 
     <!-- Add to basket button -->
     <div class="mt-auto d-flex justify-content-end">

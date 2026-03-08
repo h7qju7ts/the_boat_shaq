@@ -13,8 +13,8 @@
     <a href="{% url 'boats:catalog' %}" class="btn btn-ghost">Catalog</a>
 
     {% if user.is_authenticated %}
-      <a href="{% url 'boats:profile' %}" class="btn btn-ghost">My Profile</a>
       <a href="{% url 'basket:basket' %}" class="btn btn-ghost">Basket</a>
+      <a href="{% url 'boats:profile' %}" class="btn btn-ghost">My Profile</a>
       <a href="{% url 'account_logout' %}" class="btn btn-ghost">Logout</a>
     {% else %}
       <a href="{% url 'account_login' %}" class="btn btn-ghost">Login</a>
