@@ -11,7 +11,7 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("catalog/", views.catalog, name="catalog"),
     path("catalog/<slug:category_slug>/", views.catalog, name="catalog_by_category"),
-    path("<slug:slug>/", views.boat_detail, name="boat_detail"),
+    path("boat/<slug:slug>/", views.boat_detail, name="boat_detail"),
 ]
 
 if settings.DEBUG:

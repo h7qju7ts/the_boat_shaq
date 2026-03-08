@@ -35,9 +35,13 @@
 
     <!-- Add to basket button -->
     <div class="mt-auto d-flex justify-content-end">
-      <a href="#" class="btn btn-secondary">
-        <i class="fa-solid fa-cart-shopping me-1"></i> Add to Basket
-      </a>
+      <form action="{% url 'basket:add_to_basket' boat.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+           <button type="submit" class="btn btn-secondary">
+             <i class="fa-solid fa-cart-shopping me-1"></i> Add to Basket
+           </button>
+      </form>
     </div>
 
   </div>

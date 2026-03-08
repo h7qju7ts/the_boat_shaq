@@ -1,5 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from boats.models import Boat
 
 # Create your views here.
-def basket_view(request):
-    return render(request, "basket/basket.html")
+def add_to_basket(request, boat_id):
+    boat = get_object_or_404(Boat, pk=boat_id)
+
+    basket = request.session.get("basket", {})
+
+    boat_id_str = str(boat_id)
+    basket[boat_id_str] = basket.get(boat_id_str, 0) + 1
+
+    request.session["basket"] = basket
+
+    messages.success(request, f"{boat.name} added to your basket.")
+
+    redirect_url = request.POST.get("redirect_url")
+    return redirect(redirect_url or "boats:catalog")
+
+def view_basket(request):
+    basket = request.session.get("basket", {})
+    basket_items = []
+    total = 0
+
+    for boat_id, quantity in basket.items():
+        boat = get_object_or_404(Boat, pk=boat_id)
+        subtotal = (boat.price or 0) * quantity
+        total += subtotal
+
+        basket_items.append({
+            "boat": boat,
+            "quantity": quantity,
+            "subtotal": subtotal,
+        })
+
+    context = {
+        "basket_items": basket_items,
+        "total": total,
+    }    
+
+    return render(request, "basket/basket.html", context)
