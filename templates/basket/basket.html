@@ -1,14 +1,25 @@
 {% extends "main/main.html" %}
 
+<!-- ===== PAGE TITLE ===== -->
 {% block title %}Your Basket | The Boat Shaq{% endblock %}
 
+<!-- ===== MAIN CONTENT ===== -->
 {% block content %}
+
+<!-- ===== BASKET PAGE CONTAINER ===== -->
 <section class="container py-4">
+
+  <!-- ===== PAGE HEADING ===== -->
   <h1 class="h3 mb-4">Your Basket</h1>
 
+  <!-- ===== BASKET CONTENT ===== -->
   {% if basket_items %}
+
+    <!-- ===== BASKET TABLE ===== -->
     <div class="table-responsive">
       <table class="table align-middle">
+
+        <!-- ===== TABLE HEADER ===== -->
         <thead>
           <tr>
             <th>Boat</th>
@@ -17,10 +28,16 @@
             <th>Subtotal</th>
           </tr>
         </thead>
+
+        <!-- ===== TABLE BODY ===== -->
         <tbody>
           {% for item in basket_items %}
             <tr>
+
+              <!-- ===== BOAT NAME ===== -->
               <td>{{ item.boat.name }}</td>
+
+              <!-- ===== BOAT PRICE ===== -->
               <td>
                 {% if item.boat.price %}
                   £{{ item.boat.price }}
@@ -28,21 +45,34 @@
                   Price on request
                 {% endif %}
               </td>
+
+              <!-- ===== QUANTITY ===== -->
               <td>{{ item.quantity }}</td>
+
+              <!-- ===== SUBTOTAL ===== -->
               <td>£{{ item.subtotal }}</td>
+
             </tr>
           {% endfor %}
         </tbody>
+
       </table>
     </div>
 
+    <!-- ===== BASKET TOTAL ===== -->
     <div class="text-end">
       <h4>Total: £{{ total }}</h4>
     </div>
+
   {% else %}
+
+    <!-- ===== EMPTY BASKET MESSAGE ===== -->
     <div class="alert alert-info mb-0">
       Your basket is empty.
     </div>
+
   {% endif %}
+
 </section>
+
 {% endblock %}

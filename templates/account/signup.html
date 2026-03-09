@@ -1,24 +1,45 @@
 {% extends "main/main.html" %}
 
+<!-- ===== PAGE TITLE ===== -->
 {% block title %}Sign up | The Boat Shaq{% endblock %}
 
+<!-- ===== MAIN CONTENT ===== -->
 {% block content %}
+
+<!-- ===== SIGN UP PAGE CONTAINER ===== -->
 <div class="container">
+
+  <!-- ===== CENTERED SIGN UP LAYOUT ===== -->
   <div class="row justify-content-center text-center">
     <div class="col-md-6">
-  <h1>Sign up</h1>
 
-  <form method="post" action="{% url 'account_signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary" type="submit">Create account</button>
-  </form>
+      <!-- ===== PAGE HEADING ===== -->
+      <h1>Sign up</h1>
 
-  <p>
-    Already have an account?
-    <a class="link-action" href="{% url 'account_login' %}">Log in</a>
-  </p>
+      <!-- ===== SIGN UP FORM ===== -->
+      <form method="post" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+
+        <!-- ===== FORM FIELDS ===== -->
+        {{ form.as_p }}
+
+        <!-- ===== SUBMIT BUTTON ===== -->
+        <button class="btn btn-secondary" type="submit">
+          Create account
+        </button>
+      </form>
+
+      <!-- ===== LOGIN LINK ===== -->
+      <p>
+        Already have an account?
+        <a class="link-action" href="{% url 'account_login' %}">
+          Log in
+        </a>
+      </p>
+
     </div>
   </div>
-</div>  
+
+</div>
+
 {% endblock %}

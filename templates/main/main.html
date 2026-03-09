@@ -2,14 +2,20 @@
 
 <!doctype html>
 <html lang="en">
+
+  <!-- ===== DOCUMENT HEAD ===== -->
   <head>
+
+    <!-- ===== META TAGS ===== -->
     {% block meta %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% endblock %}
 
+    <!-- ===== CORE CSS & FONTS ===== -->
     {% block corecss %}
-    <!-- Favicon -->
+
+    <!-- ===== FAVICONS ===== -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -29,7 +35,7 @@
     />
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
 
-    <!-- Bootstrap CSS -->
+    <!-- ===== BOOTSTRAP CSS ===== -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -37,7 +43,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- Google Font -->
+    <!-- ===== GOOGLE FONTS ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,50 +51,61 @@
       rel="stylesheet"
     />
 
-    <!-- Custom CSS -->
+    <!-- ===== CUSTOM CSS ===== -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
     {% endblock %}
 
+    <!-- ===== CORE JAVASCRIPT LIBRARIES ===== -->
     {% block corejs %}
-    <!-- Bootstrap JS Bundle -->
+
+    <!-- ===== BOOTSTRAP JS BUNDLE ===== -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
 
-    <!-- Font Awesome Kit -->
+    <!-- ===== FONT AWESOME ICON KIT ===== -->
     <script
       src="https://kit.fontawesome.com/220e80d55c.js"
       crossorigin="anonymous"
     ></script>
+
     {% endblock %}
 
+    <!-- ===== PAGE TITLE ===== -->
     <title>{% block title %}The Boat Shaq{% endblock %}</title>
+
   </head>
 
+  <!-- ===== DOCUMENT BODY ===== -->
   <body>
-    
 
+    <!-- ===== SITE NAVIGATION ===== -->
     {% include "includes/nav.html" %}
 
+    <!-- ===== DJANGO MESSAGE TOASTS ===== -->
     {% include "includes/toasts.html" %}
 
+    <!-- ===== MAIN PAGE CONTENT ===== -->
     <main>
       {% block content %}
-      
       {% endblock %}
     </main>
 
+    <!-- ===== SITE FOOTER ===== -->
     {% include "includes/footer.html" %}
 
+    <!-- ===== PAGE-SPECIFIC JAVASCRIPT ===== -->
     {% block postloadjs %}
-    <!-- Auto-updating year -->
+
+    <!-- ===== AUTO-UPDATING COPYRIGHT YEAR ===== -->
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
-    <!-- Password visibility toggle -->
+    <!-- ===== PASSWORD VISIBILITY TOGGLE ===== -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".toggle-password").forEach((button) => {
@@ -107,7 +124,7 @@
       });
     </script>
 
-    <!-- Caps Lock detector -->
+    <!-- ===== CAPS LOCK DETECTOR FOR PASSWORD FIELDS ===== -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const passwordInputs = document.querySelectorAll('input[type="password"]');
@@ -130,16 +147,17 @@
       });
     </script>
 
-    <!-- Messages show and dismiss 2 seconds -->
+    <!-- ===== DJANGO MESSAGE TOAST DISPLAY ===== -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll(".toast").forEach(function (toastEl) {
-      // Reads delay from data-bs-delay="2000" on the element
-      const toast = new bootstrap.Toast(toastEl);
-      toast.show();
-       });
-     });
+        document.querySelectorAll(".toast").forEach(function (toastEl) {
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+        });
+      });
     </script>
+
     {% endblock %}
+
   </body>
 </html>

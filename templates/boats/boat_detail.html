@@ -1,62 +1,132 @@
 {% extends "main/main.html" %}
 {% load static %}
 
+<!-- ===== PAGE TITLE ===== -->
 {% block title %}{{ boat.name }} | The Boat Shaq{% endblock %}
 
+<!-- ===== MAIN CONTENT ===== -->
 {% block content %}
-<section class="container py-4">
+<section class="container py-5">
 
-<div class="row g-4">
+  <!-- ===== BOAT DETAIL LAYOUT ===== -->
+  <div class="row g-5 align-items-start">
 
-  <div class="col-md-6">
-    {% if boat.image %}
-      <img src="{{ boat.image.url }}" class="img-fluid rounded" alt="{{ boat.name }}">
-    {% endif %}
-  </div>
-
-  <div class="col-md-6 d-flex flex-column">
-
-    <div class="d-flex justify-content-end mb-3">
-      <a href="{% url 'boats:catalog' %}?page={{ request.GET.page }}" 
-         class="btn btn-secondary">
-        <i class="fa-solid fa-arrow-left me-1"></i> Back to Catalog
-      </a>
+    <!-- ===== BOAT IMAGE ===== -->
+    <div class="col-lg-6">
+      {% if boat.image %}
+        <img src="{{ boat.image.url }}" class="img-fluid rounded shadow-sm w-100" alt="{{ boat.name }}">
+      {% else %}
+        <!-- ===== IMAGE PLACEHOLDER ===== -->
+        <div class="bg-light rounded d-flex align-items-center justify-content-center" style="min-height: 350px;">
+          <span class="text-muted">No image available</span>
+        </div>
+      {% endif %}
     </div>
 
-    <h1 class="h3">{{ boat.name }}</h1>
+    <!-- ===== BOAT DETAILS COLUMN ===== -->
+    <div class="col-lg-6 d-flex flex-column">
 
-    <p class="text-muted mb-3">
-      {% if boat.brand %}{{ boat.brand }}{% endif %}
-      {% if boat.category %} • {{ boat.category }}{% endif %}
-      {% if boat.year %} • {{ boat.year }}{% endif %}
-    </p>
+      <!-- ===== BACK TO CATALOG BUTTON ===== -->
+      <div class="mb-3">
+        <a href="{% url 'boats:catalog' %}?page={{ request.GET.page }}" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left me-1"></i> Back to Catalog
+        </a>
+      </div>
 
-    <p>{{ boat.description }}</p>
-    
-    <!-- Pricing -->
-    <div class="fw-semibold">
-       {% if boat.price %}
-       £{{ boat.price|floatformat:2 }}
-       {% else %}
-       <span class="text-muted">Price on request</span>
-              {% endif %}
-    </div>        
-            
+      <!-- ===== BOAT TITLE ===== -->
+      <h1 class="display-6 fw-semibold mb-2">{{ boat.name }}</h1>
 
-    <!-- Add to basket button -->
-    <div class="mt-auto d-flex justify-content-end">
-      <form action="{% url 'basket:add_to_basket' boat.id %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
-           <button type="submit" class="btn btn-secondary">
-             <i class="fa-solid fa-cart-shopping me-1"></i> Add to Basket
-           </button>
-      </form>
+      <!-- ===== BOAT META INFO ===== -->
+      <p class="text-muted mb-3">
+        {% if boat.brand %}{{ boat.brand }}{% endif %}
+        {% if boat.category %} • {{ boat.category }}{% endif %}
+        {% if boat.year %} • {{ boat.year }}{% endif %}
+      </p>
+
+      <!-- ===== PRICE SECTION ===== -->
+      <div class="mb-4">
+        {% if boat.price %}
+          <div class="h2 fw-bold mb-0">£{{ boat.price|floatformat:2 }}</div>
+        {% else %}
+          <div class="h5 text-muted mb-0">Price on request</div>
+        {% endif %}
+      </div>
+
+      <!-- ===== BOAT SPECIFICATIONS CARD ===== -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+
+          <!-- ===== SPECS TITLE ===== -->
+          <h2 class="h6 mb-3">Boat Details</h2>
+
+          <!-- ===== SPECS GRID ===== -->
+          <div class="row g-3 small">
+
+            <!-- ===== BRAND ===== -->
+            <div class="col-6">
+              <div class="text-muted">Brand</div>
+              <div class="fw-semibold">{% if boat.brand %}{{ boat.brand }}{% else %}—{% endif %}</div>
+            </div>
+
+            <!-- ===== CATEGORY ===== -->
+            <div class="col-6">
+              <div class="text-muted">Category</div>
+              <div class="fw-semibold">{% if boat.category %}{{ boat.category }}{% else %}—{% endif %}</div>
+            </div>
+
+            <!-- ===== LENGTH ===== -->
+            <div class="col-6">
+              <div class="text-muted">Length</div>
+              <div class="fw-semibold">{% if boat.length_ft %}{{ boat.length_ft }} ft{% else %}—{% endif %}</div>
+            </div>
+
+            <!-- ===== YEAR ===== -->
+            <div class="col-6">
+              <div class="text-muted">Year</div>
+              <div class="fw-semibold">{% if boat.year %}{{ boat.year }}{% else %}—{% endif %}</div>
+            </div>
+
+            <!-- ===== AVAILABILITY ===== -->
+            <div class="col-6">
+              <div class="text-muted">Availability</div>
+              <div class="fw-semibold">
+                {% if boat.is_available %}
+                  <span class="badge text-bg-success">Available</span>
+                {% else %}
+                  <span class="badge text-bg-secondary">Unavailable</span>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOAT DESCRIPTION ===== -->
+      <div class="mb-4">
+        <h2 class="h5 mb-3">Description</h2>
+        <p class="text-muted lh-lg">{{ boat.description }}</p>
+      </div>
+
+      <!-- ===== ADD TO BASKET ===== -->
+      <div>
+        <form action="{% url 'basket:add_to_basket' boat.id %}" method="post">
+
+          {% csrf_token %}
+
+          <!-- ===== REDIRECT BACK AFTER ADD ===== -->
+          <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+
+          <!-- ===== ADD BUTTON ===== -->
+          <button type="submit" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-cart-shopping me-2"></i> Add to Basket
+          </button>
+
+        </form>
+      </div>
+
     </div>
-
   </div>
-
-</div>
 
 </section>
 {% endblock %}

@@ -1,19 +1,33 @@
-{% extends "main/main.html" %} {% block content %}
+{% extends "main/main.html" %}
+
+<!-- ===== MAIN CONTENT ===== -->
+{% block content %}
+
+<!-- ===== LOGIN PAGE CONTAINER ===== -->
 <div class="container">
+
+  <!-- ===== CENTERED LOGIN LAYOUT ===== -->
   <div class="row justify-content-center text-center">
     <div class="col-md-6">
+
+      <!-- ===== PAGE TITLE ===== -->
       <h2>Login</h2>
+
+      <!-- ===== LOGIN FORM ===== -->
       <form method="post" action="{% url 'account_login' %}">
         {% csrf_token %}
 
+        <!-- ===== LOGIN FIELD ===== -->
         <div class="mb-3 text-start">
           <label for="id_login" class="form-label">Login</label>
           {{ form.login }}
         </div>
 
+        <!-- ===== PASSWORD FIELD ===== -->
         <div class="mb-3 text-start">
           <label for="id_password" class="form-label">Password</label>
 
+          <!-- ===== PASSWORD INPUT WITH VISIBILITY TOGGLE ===== -->
           <div class="password-wrapper">
             {{ form.password }}
             <button
@@ -25,10 +39,12 @@
             </button>
           </div>
 
+          <!-- ===== CAPS LOCK WARNING ===== -->
           <div id="caps-warning-id_password" class="caps-warning" style="display:none;">
             <i class="fa-solid fa-triangle-exclamation"></i> Caps Lock is on
           </div>
 
+          <!-- ===== FORGOT PASSWORD LINK ===== -->
           <div class="mt-1">
             <a class="link-action" href="{% url 'account_reset_password' %}">
               Forgot your password?
@@ -36,21 +52,28 @@
           </div>
         </div>
 
+        <!-- ===== REMEMBER ME OPTION ===== -->
         <div class="mb-3">
           {{ form.remember }}
           <label for="id_remember"> Remember Me</label>
         </div>
 
+        <!-- ===== LOGIN BUTTON ===== -->
         <p>
           <button type="submit" class="btn btn-secondary">Log in</button>
         </p>
+
       </form>
 
+      <!-- ===== SIGNUP LINK ===== -->
       <p>
         No account?
         <a class="link-action" href="{% url 'account_signup' %}">Sign up</a>
       </p>
+
     </div>
   </div>
+
 </div>
+
 {% endblock %}

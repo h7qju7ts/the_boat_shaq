@@ -1,31 +1,47 @@
 {% extends "main/main.html" %}
 
+<!-- ===== PAGE TITLE ===== -->
 {% block title %}Log Out | The Boat Shaq{% endblock %}
 
+<!-- ===== MAIN CONTENT ===== -->
 {% block content %}
+
+<!-- ===== LOGOUT PAGE CONTAINER ===== -->
 <div class="container">
+
+  <!-- ===== CENTERED LOGOUT LAYOUT ===== -->
   <div class="row justify-content-center text-center">
     <div class="col-md-6">
+
+      <!-- ===== PAGE HEADING ===== -->
       <h2>Log Out</h2>
 
+      <!-- ===== CONFIRMATION MESSAGE ===== -->
       <p>Are you sure you want to log out?</p>
 
+      <!-- ===== LOGOUT FORM ===== -->
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
 
+        <!-- ===== CONFIRM LOGOUT BUTTON ===== -->
         <p>
           <button type="submit" class="btn btn-secondary">
             Confirm Log Out
           </button>
         </p>
 
-         <p>
-           <a href="{% url 'boats:home' %}" class="btn btn-secondary">
-             Cancel and Return Home
-           </a>
-         </p>
-      </form>   
+        <!-- ===== CANCEL AND RETURN HOME ===== -->
+        <p>
+          <a href="{% url 'boats:home' %}" class="btn btn-secondary">
+            Cancel and Return Home
+          </a>
+        </p>
+
+      </form>
+
     </div>
   </div>
+
 </div>
+
 {% endblock %}

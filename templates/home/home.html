@@ -1,18 +1,30 @@
 {% extends "main/main.html" %}
 
+<!-- ===== PAGE TITLE ===== -->
 {% block title %}Home | The Boat Shaq{% endblock %}
 
+<!-- ===== BODY CLASS ===== -->
 {% block body_class %}
 home-page
 {% endblock %}
 
+<!-- ===== MAIN CONTENT ===== -->
 {% block content %}
-    
+
+    <!-- ===== HOMEPAGE INTRO MESSAGE ===== -->
     <p>Anchors up. This is the homepage.</p>
 
+    <!-- ===== AUTHENTICATION STATUS MESSAGE ===== -->
     {% if user.is_authenticated %}
+
+        <!-- ===== USER LOGGED IN MESSAGE ===== -->
         <p>You are logged in.</p>
+
     {% else %}
+
+        <!-- ===== USER NOT LOGGED IN MESSAGE ===== -->
         <p>Please log in or sign up to continue.</p>
+
     {% endif %}
+
 {% endblock %}

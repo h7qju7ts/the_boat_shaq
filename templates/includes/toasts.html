@@ -1,6 +1,13 @@
+<!-- ===== DJANGO MESSAGE TOASTS ===== -->
 {% if messages %}
+
+<!-- ===== TOAST CONTAINER (TOP RIGHT) ===== -->
 <div class="position-fixed end-0 p-3 toast-container" aria-live="polite" aria-atomic="true">
+
+  <!-- ===== LOOP THROUGH DJANGO MESSAGES ===== -->
   {% for message in messages %}
+
+    <!-- ===== INDIVIDUAL TOAST ===== -->
     <div
       class="toast toast-slide mb-2"
       role="alert"
@@ -8,25 +15,43 @@
       aria-atomic="true"
       data-bs-delay="100"
     >
+
+      <!-- ===== TOAST HEADER ===== -->
       <div class="toast-header
                   {% if message.tags %}{{ message.tags }}{% else %}info{% endif %}">
+
+        <!-- ===== MESSAGE TYPE LABEL ===== -->
         <strong class="me-auto">
-          {% if 'success' in message.tags %}Success
-          {% elif 'error' in message.tags %}Error
-          {% elif 'warning' in message.tags %}Warning
-          {% else %}Info
+          {% if 'success' in message.tags %}
+            Success
+          {% elif 'error' in message.tags %}
+            Error
+          {% elif 'warning' in message.tags %}
+            Warning
+          {% else %}
+            Info
           {% endif %}
         </strong>
-        <button type="button"
-                class="btn-close ms-2 mb-1"
-                data-bs-dismiss="toast"
-                aria-label="Close"></button>
+
+        <!-- ===== CLOSE BUTTON ===== -->
+        <button
+          type="button"
+          class="btn-close ms-2 mb-1"
+          data-bs-dismiss="toast"
+          aria-label="Close">
+        </button>
+
       </div>
 
+      <!-- ===== TOAST MESSAGE BODY ===== -->
       <div class="toast-body">
         {{ message }}
       </div>
+
     </div>
+
   {% endfor %}
+
 </div>
+
 {% endif %}
