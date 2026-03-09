@@ -111,17 +111,32 @@
       <!-- ===== ADD TO BASKET ===== -->
       <div>
         <form action="{% url 'basket:add_to_basket' boat.id %}" method="post">
-
           {% csrf_token %}
 
           <!-- ===== REDIRECT BACK AFTER ADD ===== -->
           <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
 
-          <!-- ===== ADD BUTTON ===== -->
-          <button type="submit" class="btn btn-secondary btn-lg">
-            <i class="fa-solid fa-cart-shopping me-2"></i> Add to Basket
-          </button>
+          <!-- ===== ACTION BUTTONS ===== -->
+          <div class="d-flex gap-4 align-items-center">
 
+            <!-- ===== ADD BUTTON ===== -->
+            <button type="submit" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-cart-shopping me-2"></i> Add to Basket
+            </button>
+
+            <!-- ===== VIEW BASKET BUTTON ===== -->
+            <a href="{% url 'basket:basket' %}" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-basket-shopping me-2"></i> View Basket
+            </a>
+
+            <!-- ===== BACK TO CATALOG BUTTON ===== -->
+      
+            <a href="{% url 'boats:catalog' %}?page={{ request.GET.page }}" class="btn btn-secondary">
+              <i class="fa-solid fa-arrow-left me-1"></i> Back to Catalog
+            </a>
+      
+
+          </div>
         </form>
       </div>
 

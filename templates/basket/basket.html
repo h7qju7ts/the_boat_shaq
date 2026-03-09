@@ -26,33 +26,66 @@
             <th>Price</th>
             <th>Qty</th>
             <th>Subtotal</th>
+            <th class="text-end">Actions</th>
           </tr>
         </thead>
 
         <!-- ===== TABLE BODY ===== -->
         <tbody>
           {% for item in basket_items %}
-            <tr>
+          <tr>
 
-              <!-- ===== BOAT NAME ===== -->
-              <td>{{ item.boat.name }}</td>
+            <!-- ===== BOAT NAME ===== -->
+            <td>{{ item.boat.name }}</td>
 
-              <!-- ===== BOAT PRICE ===== -->
-              <td>
-                {% if item.boat.price %}
-                  £{{ item.boat.price }}
-                {% else %}
-                  Price on request
-                {% endif %}
-              </td>
+            <!-- ===== BOAT PRICE ===== -->
+            <td>
+              {% if item.boat.price %}
+                £{{ item.boat.price }}
+              {% else %}
+                Price on request
+              {% endif %}
+            </td>
 
-              <!-- ===== QUANTITY ===== -->
-              <td>{{ item.quantity }}</td>
+            <!-- ===== QUANTITY ===== -->
+            <td>{{ item.quantity }}</td>
 
-              <!-- ===== SUBTOTAL ===== -->
-              <td>£{{ item.subtotal }}</td>
+            <!-- ===== SUBTOTAL ===== -->
+            <td>£{{ item.subtotal }}</td>
 
-            </tr>
+            <!-- ===== ITEM ACTIONS ===== -->
+            <td class="text-end">
+              <div class="d-flex justify-content-end gap-2 flex-wrap">
+
+                <!-- ===== DECREASE QUANTITY ===== -->
+                <form action="{% url 'basket:decrease_basket' item.boat.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-secondary btn-sm">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                </form>
+
+                <!-- ===== INCREASE QUANTITY ===== -->
+                <form action="{% url 'basket:add_to_basket' item.boat.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+                  <button type="submit" class="btn btn-outline-secondary btn-sm">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </form>
+
+                <!-- ===== REMOVE ITEM ===== -->
+                <form action="{% url 'basket:remove_from_basket' item.boat.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="fa-solid fa-trash me-1"></i> Remove
+                  </button>
+                </form>
+
+              </div>
+            </td>
+
+          </tr>
           {% endfor %}
         </tbody>
 
@@ -60,16 +93,47 @@
     </div>
 
     <!-- ===== BASKET TOTAL ===== -->
-    <div class="text-end">
-      <h4>Total: £{{ total }}</h4>
+    <div class="text-end mt-4">
+      <h4 class="mb-3">Total: £{{ total }}</h4>
+
+      <!-- ===== ACTION BUTTONS ===== -->
+      <div class="d-flex justify-content-end gap-3 flex-wrap">
+
+        <!-- ===== RETURN TO CATALOG ===== -->
+        <a href="{% url 'boats:catalog' %}" class="btn btn-outline-secondary">
+          <i class="fa-solid fa-arrow-left me-2"></i>
+          Return to Catalog
+        </a>
+
+        <!-- ===== CLEAR BASKET ===== -->
+        <form action="{% url 'basket:clear_basket' %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger">
+            <i class="fa-solid fa-trash-can me-2"></i>
+            Clear Basket
+          </button>
+        </form>
+
+        <!-- ===== CHECKOUT BUTTON ===== -->
+        <a href="" class="btn btn-secondary">
+          <i class="fa-solid fa-credit-card me-2"></i>
+          Checkout
+        </a>
+
+      </div>
     </div>
 
   {% else %}
 
     <!-- ===== EMPTY BASKET MESSAGE ===== -->
-    <div class="alert alert-info mb-0">
+    <div class="alert alert-info mb-3">
       Your basket is empty.
     </div>
+
+    <a href="{% url 'boats:catalog' %}" class="btn btn-secondary">
+      <i class="fa-solid fa-arrow-left me-2"></i>
+      Return to Catalog
+    </a>
 
   {% endif %}
 
