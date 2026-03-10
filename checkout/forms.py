@@ -1,61 +1,37 @@
 from django import forms
+from .models import Order
 
 
-class CheckoutForm(forms.Form):
-    full_name = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Enter your full name",
-        })
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={
-            "class": "form-control",
-            "placeholder": "Enter your email adress",
-        })
-    )
-    phone_number = forms.CharField(
-        max_length=20,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Enter your phone number",
-        })
-    )
-    street_address1 = forms.CharField(
-        max_length=255,
-        label="Street AdDress 1",
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "House number and street name",
-        })
-    )
-    street_address2 = forms.CharField(
-        max_length=255,
-        required=False,
-        label="Street Address 2",
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Apartment, suite, unit, etc... (optional)",
-        })
-    )
-    town_or_city = forms.CharField(
-        max_length=100,
-        label="Town/City",
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-        })
-    )
-    county = forms.CharField(
-        max_length=100,
-        required=False,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-        })
-    )
-    postcode = forms.CharField(
-        max_length=20,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-        })
-    )
+class CheckoutForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = [
+            "full_name",
+            "email",
+            "phone_number",
+            "street_address1",
+            "street_address2",
+            "town_or_city",
+            "county",
+            "postcode",
+            "country",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        placeholders = {
+            "full_name": "Enter your full name",
+            "email": "Enter your email",
+            "phone_number": "Enter your phone number",
+            "street_address1": "House number and street name",
+            "street_address2": "Apartment, suite, unit etc. (optional)",
+            "town_or_city": "Town or City",
+            "county": "County",
+            "postcode": "Postcode",
+            "country": "Country",
+        }
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = placeholders.get(field_name, "")

@@ -1,19 +1,21 @@
 from decimal import Decimal
-from django.contrib import messages
-from django.shortcuts import redirect, render
-from boats.models import Boat
-from .forms import CheckoutForm
-from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-@login_required
+from django.contrib import messages
+from django.shortcuts import redirect
+from boats.models import Boat
+from profiles.models import UserProfile
+
+from .forms import CheckoutForm
+from .models import OrderLineItem
+
+
 def checkout(request):
     basket = request.session.get("basket", {})
     basket_items = []
     total = Decimal("0.00")
 
     if not basket:
-        messages.info(request, "Your basket is empty")
+        messages.info(request, "Your basket is empty.")
         return redirect("basket:basket")
 
     for boat_id, quantity in basket.items():
@@ -26,22 +28,27 @@ def checkout(request):
             "boat": boat,
             "quantity": quantity,
             "subtotal": subtotal,
-        }) 
+        })
 
-    if request.method =="POST":
+    if request.method == "POST":
         form = CheckoutForm(request.POST)
-
         if form.is_valid():
-            messages.success(request, "Checkout complete! Your order has been placed.")
+            order = form.save(commit=False)
+
+            if request.user.is_authenticated:
+                profile = UserProfile.objects.get(user=request.user)
+                order.user_profile = profile
+
+            order.save()
+
+            for item in basket_items:
+                OrderLineItem.objects.create(
+                    order=order,
+                    boat=item["boat"],
+                    quantity=item["quantity"],
+                )
+
+            order.update_total()
             request.session["basket"] = {}
-            return redirect("boats:catalog")
-    else:
-        form = CheckoutForm()
-
-
-    context = {
-        "form": form,
-        "basket_items": basket_items,
-        "total": total,
-    }                   
-    return render(request, "checkout/checkout.html", context)
+            messages.success(request, "Order placed successfully.")
+            return redirect("profiles:profile")
