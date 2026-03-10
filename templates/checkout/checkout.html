@@ -1,0 +1,148 @@
+{% extends "main/main.html" %}
+
+<!-- ===== PAGE TITLE ===== -->
+{% block title %}Checkout | The Boat Shaq{% endblock %}
+
+<!-- ===== MAIN CONTENT ===== -->
+{% block content %}
+<section class="container py-4">
+
+  <!-- ===== PAGE HEADING ===== -->
+  <h1 class="h3 mb-4">Checkout</h1>
+
+  <div class="row g-4">
+
+    <!-- ===== CHECKOUT FORM COLUMN ===== -->
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-3">Billing Details</h2>
+
+          <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+              </div>
+            {% endif %}
+
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="{{ form.full_name.id_for_label }}" class="form-label">Full Name</label>
+                {{ form.full_name }}
+                {% for error in form.full_name.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email Address</label>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone Number</label>
+                {{ form.phone_number }}
+                {% for error in form.phone_number.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12">
+                <label for="{{ form.street_address1.id_for_label }}" class="form-label">Street Address 1</label>
+                {{ form.street_address1 }}
+                {% for error in form.street_address1.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12">
+                <label for="{{ form.street_address2.id_for_label }}" class="form-label">Street Address 2</label>
+                {{ form.street_address2 }}
+                {% for error in form.street_address2.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.town_or_city.id_for_label }}" class="form-label">Town / City</label>
+                {{ form.town_or_city }}
+                {% for error in form.town_or_city.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.county.id_for_label }}" class="form-label">County</label>
+                {{ form.county }}
+                {% for error in form.county.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.postcode.id_for_label }}" class="form-label">Postcode</label>
+                {{ form.postcode }}
+                {% for error in form.postcode.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="{{ form.country.id_for_label }}" class="form-label">Country</label>
+                {{ form.country }}
+                {% for error in form.country.errors %}
+                  <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="d-flex gap-3 flex-wrap mt-4">
+              <a href="{% url 'basket:basket' %}" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left me-2"></i>
+                Back to Basket
+              </a>
+
+              <button type="submit" class="btn btn-basket">
+                <i class="fa-solid fa-lock me-2"></i>
+                Complete Order
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDER SUMMARY COLUMN ===== -->
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-3">Order Summary</h2>
+
+          <ul class="list-group list-group-flush mb-3">
+            {% for item in basket_items %}
+              <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                <div>
+                  <strong>{{ item.boat.name }}</strong><br>
+                  <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                </div>
+                <span>£{{ item.subtotal }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <div class="d-flex justify-content-between align-items-center border-top pt-3">
+            <strong>Total</strong>
+            <strong>£{{ total }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
