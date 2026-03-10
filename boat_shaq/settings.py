@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'boats',
     'basket',
     'checkout',
+    'profiles',
     'django_extensions',
 ]
 
