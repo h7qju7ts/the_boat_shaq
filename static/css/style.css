@@ -78,6 +78,19 @@ input {
   color: white;
 }
 
+/* Danger buttons/checkout page */
+
+.btn-basket {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
+}
+.btn-basket:hover {
+  background-color: red;
+  color: white;
+  border-color: red;
+}
+
 /* Small action links (auth pages) */
 
 .link-action {
