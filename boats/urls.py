@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, profile
+from .views import home
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -8,7 +8,6 @@ app_name = "boats"
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("profile/", views.profile, name="profile"),
     path("catalog/", views.catalog, name="catalog"),
     path("catalog/<slug:category_slug>/", views.catalog, name="catalog_by_category"),
     path("boat/<slug:slug>/", views.boat_detail, name="boat_detail"),

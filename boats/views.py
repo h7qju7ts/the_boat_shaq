@@ -12,9 +12,6 @@ def boat_detail(request, slug):
     boat = get_object_or_404(Boat, slug=slug)
     return render(request, "boats/boat_detail.html", {"boat": boat})
 
-@login_required
-def profile(request):
-    return render(request, "profile/profile.html")
 
 def catalog(request, category_slug=None):
     qs = Boat.objects.filter(is_available=True).select_related("brand", "category")
