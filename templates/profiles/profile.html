@@ -1,0 +1,142 @@
+{% extends "main/main.html" %}
+
+<!-- ===== PAGE TITLE ===== -->
+{% block title %}My Profile | The Boat Shaq{% endblock %}
+
+<!-- ===== MAIN CONTENT ===== -->
+{% block content %}
+<section class="container py-4">
+
+  <!-- ===== PAGE HEADING ===== -->
+  <h1 class="h3 mb-4">My Profile</h1>
+
+  <div class="row g-4">
+
+    <!-- ===== PROFILE DETAILS COLUMN ===== -->
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+          <!-- ===== PROFILE DETAILS HEADING ===== -->
+          <h2 class="h5 mb-3">Account Details</h2>
+
+          <!-- ===== PROFILE DETAILS LIST ===== -->
+          <p class="mb-2">
+            <strong>Name:</strong>
+            {{ profile.default_full_name|default:"Not set" }}
+          </p>
+
+          <p class="mb-2">
+            <strong>Email:</strong>
+            {{ profile.default_email|default:"Not set" }}
+          </p>
+
+          <p class="mb-2">
+            <strong>Phone:</strong>
+            {{ profile.default_phone_number|default:"Not set" }}
+          </p>
+
+          <!-- ===== ADDRESS SECTION ===== -->
+          <p class="mb-2"><strong>Address:</strong></p>
+          <p class="text-muted mb-0">
+            {% if profile.default_street_address1 %}
+              {{ profile.default_street_address1 }}<br>
+            {% endif %}
+
+            {% if profile.default_street_address2 %}
+              {{ profile.default_street_address2 }}<br>
+            {% endif %}
+
+            {% if profile.default_town_or_city %}
+              {{ profile.default_town_or_city }}<br>
+            {% endif %}
+
+            {% if profile.default_county %}
+              {{ profile.default_county }}<br>
+            {% endif %}
+
+            {% if profile.default_postcode %}
+              {{ profile.default_postcode }}<br>
+            {% endif %}
+
+            {% if profile.default_country %}
+              {{ profile.default_country }}
+            {% endif %}
+
+            {% if not profile.default_street_address1 and not profile.default_street_address2 and not profile.default_town_or_city and not profile.default_county and not profile.default_postcode and not profile.default_country %}
+              Not set
+            {% endif %}
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDER HISTORY COLUMN ===== -->
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+          <!-- ===== ORDER HISTORY HEADING ===== -->
+          <h2 class="h5 mb-3">Order History</h2>
+
+          {% if orders %}
+
+            <!-- ===== ORDER HISTORY TABLE ===== -->
+            <div class="table-responsive">
+              <table class="table align-middle">
+
+                <!-- ===== TABLE HEADER ===== -->
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Items</th>
+                  </tr>
+                </thead>
+
+                <!-- ===== TABLE BODY ===== -->
+                <tbody>
+                  {% for order in orders %}
+                    <tr>
+
+                      <!-- ===== ORDER NUMBER ===== -->
+                      <td>#{{ order.id }}</td>
+
+                      <!-- ===== ORDER DATE ===== -->
+                      <td>{{ order.date|date:"d M Y, H:i" }}</td>
+
+                      <!-- ===== ORDER TOTAL ===== -->
+                      <td>£{{ order.order_total }}</td>
+
+                      <!-- ===== ORDER ITEMS ===== -->
+                      <td>
+                        {% for item in order.lineitems.all %}
+                          {{ item.boat.name }} x {{ item.quantity }}{% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+                      </td>
+
+                    </tr>
+                  {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+
+          {% else %}
+
+            <!-- ===== EMPTY ORDER HISTORY MESSAGE ===== -->
+            <div class="alert alert-info mb-0">
+              You have not placed any orders yet.
+            </div>
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
