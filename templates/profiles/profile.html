@@ -7,136 +7,210 @@
 {% block content %}
 <section class="container py-4">
 
-  <!-- ===== PAGE HEADING ===== -->
-  <h1 class="h3 mb-4">My Profile</h1>
+    <!-- ===== PAGE HEADING ===== -->
+    <h1 class="h3 mb-4">My Profile</h1>
 
-  <div class="row g-4">
+    <div class="row g-4">
 
-    <!-- ===== PROFILE DETAILS COLUMN ===== -->
-    <div class="col-12 col-lg-4">
-      <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
+        <!-- ===== PROFILE SUMMARY COLUMN ===== -->
+        <div class="col-12 col-lg-4">
 
-          <!-- ===== PROFILE DETAILS HEADING ===== -->
-          <h2 class="h5 mb-3">Account Details</h2>
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4">
 
-          <!-- ===== PROFILE DETAILS LIST ===== -->
-          <p class="mb-2">
-            <strong>Name:</strong>
-            {{ profile.default_full_name|default:"Not set" }}
-          </p>
+                    <h2 class="h5 mb-4">Profile Summary</h2>
 
-          <p class="mb-2">
-            <strong>Email:</strong>
-            {{ profile.default_email|default:"Not set" }}
-          </p>
+                    <p class="text-muted small mb-1">Name</p>
+                    <p class="fw-semibold">
+                        {{ profile.default_full_name|default:"Not set" }}
+                    </p>
 
-          <p class="mb-2">
-            <strong>Phone:</strong>
-            {{ profile.default_phone_number|default:"Not set" }}
-          </p>
+                    <p class="text-muted small mb-1">Email</p>
+                    <p class="fw-semibold">
+                        {{ profile.default_email|default:"Not set" }}
+                    </p>
 
-          <!-- ===== ADDRESS SECTION ===== -->
-          <p class="mb-2"><strong>Address:</strong></p>
-          <p class="text-muted mb-0">
-            {% if profile.default_street_address1 %}
-              {{ profile.default_street_address1 }}<br>
-            {% endif %}
+                    <p class="text-muted small mb-1">Phone</p>
+                    <p class="fw-semibold">
+                        {{ profile.default_phone_number|default:"Not set" }}
+                    </p>
 
-            {% if profile.default_street_address2 %}
-              {{ profile.default_street_address2 }}<br>
-            {% endif %}
+                    <p class="text-muted small mb-1">Address</p>
+                    <p class="fw-semibold mb-0">
 
-            {% if profile.default_town_or_city %}
-              {{ profile.default_town_or_city }}<br>
-            {% endif %}
+                        {% if profile.default_street_address1 %}
+                            {{ profile.default_street_address1 }}<br>
+                        {% endif %}
 
-            {% if profile.default_county %}
-              {{ profile.default_county }}<br>
-            {% endif %}
+                        {% if profile.default_street_address2 %}
+                            {{ profile.default_street_address2 }}<br>
+                        {% endif %}
 
-            {% if profile.default_postcode %}
-              {{ profile.default_postcode }}<br>
-            {% endif %}
+                        {% if profile.default_town_or_city %}
+                            {{ profile.default_town_or_city }}<br>
+                        {% endif %}
 
-            {% if profile.default_country %}
-              {{ profile.default_country }}
-            {% endif %}
+                        {% if profile.default_county %}
+                            {{ profile.default_county }}<br>
+                        {% endif %}
 
-            {% if not profile.default_street_address1 and not profile.default_street_address2 and not profile.default_town_or_city and not profile.default_county and not profile.default_postcode and not profile.default_country %}
-              Not set
-            {% endif %}
-          </p>
+                        {% if profile.default_postcode %}
+                            {{ profile.default_postcode }}<br>
+                        {% endif %}
 
-        </div>
-      </div>
-    </div>
+                        {% if profile.default_country %}
+                            {{ profile.default_country }}
+                        {% endif %}
 
-    <!-- ===== ORDER HISTORY COLUMN ===== -->
-    <div class="col-12 col-lg-8">
-      <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
+                        {% if not profile.default_street_address1 and not profile.default_street_address2 and not profile.default_town_or_city and not profile.default_county and not profile.default_postcode and not profile.default_country %}
+                            Not set
+                        {% endif %}
 
-          <!-- ===== ORDER HISTORY HEADING ===== -->
-          <h2 class="h5 mb-3">Order History</h2>
+                    </p>
 
-          {% if orders %}
-
-            <!-- ===== ORDER HISTORY TABLE ===== -->
-            <div class="table-responsive">
-              <table class="table align-middle">
-
-                <!-- ===== TABLE HEADER ===== -->
-                <thead>
-                  <tr>
-                    <th>Order</th>
-                    <th>Date</th>
-                    <th>Total</th>
-                    <th>Items</th>
-                  </tr>
-                </thead>
-
-                <!-- ===== TABLE BODY ===== -->
-                <tbody>
-                  {% for order in orders %}
-                    <tr>
-
-                      <!-- ===== ORDER NUMBER ===== -->
-                      <td>#{{ order.id }}</td>
-
-                      <!-- ===== ORDER DATE ===== -->
-                      <td>{{ order.date|date:"d M Y, H:i" }}</td>
-
-                      <!-- ===== ORDER TOTAL ===== -->
-                      <td>£{{ order.order_total }}</td>
-
-                      <!-- ===== ORDER ITEMS ===== -->
-                      <td>
-                        {% for item in order.lineitems.all %}
-                          {{ item.boat.name }} x {{ item.quantity }}{% if not forloop.last %}<br>{% endif %}
-                        {% endfor %}
-                      </td>
-
-                    </tr>
-                  {% endfor %}
-                </tbody>
-
-              </table>
+                </div>
             </div>
 
-          {% else %}
+        </div>
 
-            <!-- ===== EMPTY ORDER HISTORY MESSAGE ===== -->
-            <div class="alert alert-info mb-0">
-              You have not placed any orders yet.
+
+        <!-- ===== MAIN DASHBOARD COLUMN ===== -->
+        <div class="col-12 col-lg-8">
+
+            <!-- ===== ORDER HISTORY CARD ===== -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body p-4">
+
+                    <h2 class="h5 mb-3">Order History</h2>
+
+                    {% if orders %}
+
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Items</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for order in orders %}
+                                        <tr>
+
+                                            <td>#{{ order.id }}</td>
+
+                                            <td>
+                                                {{ order.date|date:"d M Y, H:i" }}
+                                            </td>
+
+                                            <td>
+                                                £{{ order.order_total }}
+                                            </td>
+
+                                            <td>
+                                                {% for item in order.lineitems.all %}
+                                                    {{ item.boat.name }} x {{ item.quantity }}
+                                                    {% if not forloop.last %}
+                                                        <br>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    {% else %}
+
+                        <div class="alert alert-info mb-0">
+                            You have not placed any orders yet.
+                        </div>
+
+                    {% endif %}
+
+                </div>
             </div>
 
-          {% endif %}
+
+            <!-- ===== EDIT ACCOUNT DETAILS CARD ===== -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+
+                    <h2 class="h5 mb-3">Edit Account Details</h2>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Name:</strong></label>
+                                {{ form.default_full_name }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Email:</strong></label>
+                                {{ form.default_email }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Phone:</strong></label>
+                                {{ form.default_phone_number }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Country:</strong></label>
+                                {{ form.default_country }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Address Line 1:</strong></label>
+                                {{ form.default_street_address1 }}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label"><strong>Address Line 2:</strong></label>
+                                {{ form.default_street_address2 }}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label"><strong>Town / City:</strong></label>
+                                {{ form.default_town_or_city }}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label"><strong>County:</strong></label>
+                                {{ form.default_county }}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label"><strong>Postcode:</strong></label>
+                                {{ form.default_postcode }}
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-secondary">
+                                Save Details
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
 
         </div>
-      </div>
+
     </div>
 
-  </div>
 </section>
 {% endblock %}
