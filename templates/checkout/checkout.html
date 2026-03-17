@@ -28,6 +28,7 @@
             {% endif %}
 
             <div class="row g-3">
+
               <div class="col-12">
                 <label for="{{ form.full_name.id_for_label }}" class="form-label">Full Name</label>
                 {{ form.full_name }}
@@ -99,9 +100,59 @@
                   <div class="text-danger small mt-1">{{ error }}</div>
                 {% endfor %}
               </div>
+
             </div>
 
+            <!-- ===== PAYMENT DETAILS ===== -->
+            <hr class="my-4">
+
+            <h2 class="h5 mb-3">Payment Details</h2>
+
+            <div class="row g-3">
+
+              <div class="col-12">
+                <label for="card_number" class="form-label">Card Number</label>
+                <input
+                  type="text"
+                  name="card_number"
+                  id="card_number"
+                  class="form-control"
+                  placeholder="1234 5678 9012 3456"
+                  maxlength="19"
+                  inputmode="numeric"
+                  required>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="expiry_date" class="form-label">Expiry Date</label>
+                <input
+                  type="text"
+                  name="expiry_date"
+                  id="expiry_date"
+                  class="form-control"
+                  placeholder="MM/YY"
+                  maxlength="5"
+                  required>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label for="cvv" class="form-label">CVV</label>
+                <input
+                  type="password"
+                  name="cvv"
+                  id="cvv"
+                  class="form-control"
+                  placeholder="123"
+                  maxlength="4"
+                  inputmode="numeric"
+                  required>
+              </div>
+
+            </div>
+
+            <!-- ===== ACTION BUTTONS ===== -->
             <div class="d-flex gap-3 flex-wrap mt-4">
+
               <a href="{% url 'basket:basket' %}" class="btn btn-secondary">
                 <i class="fa-solid fa-arrow-left me-2"></i>
                 Back to Basket
@@ -111,7 +162,9 @@
                 <i class="fa-solid fa-lock me-2"></i>
                 Complete Order
               </button>
+
             </div>
+
           </form>
         </div>
       </div>
@@ -139,10 +192,22 @@
             <strong>Total</strong>
             <strong>£{{ total }}</strong>
           </div>
+
         </div>
       </div>
     </div>
 
   </div>
 </section>
+
+<!-- ===== CARD NUMBER AUTO SPACING ===== -->
+<script>
+document.getElementById('card_number').addEventListener('input', function (e) {
+  let value = e.target.value.replace(/\D/g, '');
+  value = value.substring(0,16);
+  const parts = value.match(/.{1,4}/g);
+  e.target.value = parts ? parts.join(' ') : value;
+});
+</script>
+
 {% endblock %}
