@@ -292,29 +292,50 @@ form input[type="text"] {
   box-shadow: 0 0 0 0.3px #4e4500;
 }
 
-/* Password field wrapper */
+/* --- Password field wrapper --- */
+
 .password-wrapper {
   position: relative;
   width: 100%;
 }
 
+/* --- Password input field --- */
+
 .password-wrapper input {
+  display: block;
   width: 100%;
-  padding-right: 45px;
+  height: 44px;
+  padding: 10px 45px 10px 12px;
+  border: 2px solid #25220d;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #25220d;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
-/* Eye button inside input */
+/* --- Password input focus state --- */
+
+.password-wrapper input:focus {
+  outline: none;
+  border-color: #6b5e00;
+  box-shadow: 0 0 0 0.3px #4e4500;
+}
+
+/*---  Eye button inside input --- */
+
 .toggle-password {
   position: absolute;
   top: 50%;
   right: 12px;
   transform: translateY(-50%);
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
   color: #6c757d;
   font-size: 16px;
   padding: 0;
+  z-index: 2;
 }
 
 .toggle-password:hover {
@@ -392,6 +413,8 @@ form input[type="text"] {
 .toast-header.info .btn-close {
   filter: invert(1) grayscale(100%) brightness(200%);
 }
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -1,8 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, CustomPasswordChangeForm
 
 
 @login_required
@@ -31,3 +36,10 @@ def profile(request):
         "orders": orders,
     }
     return render(request, "profiles/profile.html", context)
+
+
+class CustomPasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = "account/password_change.html"
+    success_url = reverse_lazy("profiles:password_change_done")
+    success_message = "Your password was updated successfully."
