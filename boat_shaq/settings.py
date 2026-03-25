@@ -133,6 +133,9 @@ LOGIN_REDIRECT_URL = "boats:home"
 LOGOUT_REDIRECT_URL = "boats:home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "boats:home"
 LOGIN_URL = "account_login"
+ACCOUNT_FORMS = {
+    "change_password": "profiles.forms.CustomPasswordChangeForm",
+}
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

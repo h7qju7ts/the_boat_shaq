@@ -1,6 +1,6 @@
 from django import forms
-from .models import UserProfile
 from django.contrib.auth.forms import PasswordChangeForm
+from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
@@ -15,7 +15,7 @@ class UserProfileForm(forms.ModelForm):
             "default_town_or_city",
             "default_county",
             "default_postcode",
-            "default_country"
+            "default_country",
         ]
 
 
@@ -23,20 +23,20 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["oldpassword"].widget.attrs.update({
+        self.fields["old_password"].widget.attrs.update({
             "class": "form-control",
-            "placeholder": "Current Password",
+            "placeholder": "Current password",
             "autocomplete": "current-password",
         })
 
-        self.fields["password1"].widget.attrs.update({
+        self.fields["new_password1"].widget.attrs.update({
             "class": "form-control",
-            "placeholder": "New Password",
+            "placeholder": "New password",
             "autocomplete": "new-password",
         })
 
-        self.fields["password2"].widget.attrs.update({
+        self.fields["new_password2"].widget.attrs.update({
             "class": "form-control",
-            "placeholder": "New Password (again)",
+            "placeholder": "Confirm new password",
             "autocomplete": "new-password",
         })
