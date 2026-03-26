@@ -157,6 +157,22 @@
       });
     </script>
 
+    <!-- ===== PROFILE PAGE, EDIT ACCOUNT SECTION CHEVRON ===== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const collapse = document.getElementById("editAccountCollapse");
+            const chevron = document.getElementById("chevronIcon");
+
+            collapse.addEventListener("show.bs.collapse", function () {
+                chevron.textContent = "▲";
+            });
+
+            collapse.addEventListener("hide.bs.collapse", function () {
+                chevron.textContent = "▼";
+            });
+        });
+</script>
+
     {% endblock %}
 
   </body>

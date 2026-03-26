@@ -1,7 +1,9 @@
 {% extends "main/main.html" %}
 
 <!-- ===== PAGE TITLE ===== -->
-{% block title %}My Profile | The Boat Shaq{% endblock %}
+{% block title %}
+    My Profile | The Boat Shaq
+{% endblock %}
 
 <!-- ===== MAIN CONTENT ===== -->
 {% block content %}
@@ -14,7 +16,6 @@
 
         <!-- ===== PROFILE SUMMARY COLUMN ===== -->
         <div class="col-12 col-lg-4">
-
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body p-4">
 
@@ -37,7 +38,6 @@
 
                     <p class="text-muted small mb-1">Address</p>
                     <p class="fw-semibold mb-0">
-
                         {% if profile.default_street_address1 %}
                             {{ profile.default_street_address1 }}<br>
                         {% endif %}
@@ -65,14 +65,11 @@
                         {% if not profile.default_street_address1 and not profile.default_street_address2 and not profile.default_town_or_city and not profile.default_county and not profile.default_postcode and not profile.default_country %}
                             Not set
                         {% endif %}
-
                     </p>
 
                 </div>
             </div>
-
         </div>
-
 
         <!-- ===== MAIN DASHBOARD COLUMN ===== -->
         <div class="col-12 col-lg-8">
@@ -84,7 +81,6 @@
                     <h2 class="h5 mb-3">Order History</h2>
 
                     {% if orders %}
-
                         <div class="table-responsive">
                             <table class="table align-middle">
 
@@ -100,7 +96,6 @@
                                 <tbody>
                                     {% for order in orders %}
                                         <tr>
-
                                             <td>#{{ order.id }}</td>
 
                                             <td>
@@ -119,97 +114,112 @@
                                                     {% endif %}
                                                 {% endfor %}
                                             </td>
-
                                         </tr>
                                     {% endfor %}
                                 </tbody>
 
                             </table>
                         </div>
-
                     {% else %}
-
                         <div class="alert alert-info mb-0">
                             You have not placed any orders yet.
                         </div>
-
                     {% endif %}
 
                 </div>
             </div>
 
-
-            <!-- ===== EDIT ACCOUNT DETAILS CARD ===== -->
+            <!-- ===== EDIT ACCOUNT DETAILS COLLAPSIBLE CARD ===== -->
             <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
+                <div class="card-body p-0">
 
-                    <h2 class="h5 mb-3">Edit Account Details</h2>
+                    <button
+                        class="btn w-100 text-start p-4 d-flex justify-content-between align-items-center border-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#editAccountCollapse"
+                        aria-expanded="{% if form.errors %}true{% else %}false{% endif %}"
+                        aria-controls="editAccountCollapse"
+                    >
+                        <span class="h5 mb-0">Edit Account Details</span>
 
-                    <form method="POST">
-                        {% csrf_token %}
+                        <span id="chevronIcon" class="small text-muted">
+                            {% if form.errors %}▲{% else %}▼{% endif %}
+                        </span>
+                    </button>
 
-                        <div class="row g-3">
+                    <div
+                        id="editAccountCollapse"
+                        class="collapse {% if form.errors %}show{% endif %}"
+                    >
+                        <div class="px-4 pb-4">
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Name:</strong></label>
-                                {{ form.default_full_name }}
-                            </div>
+                            <form method="POST">
+                                {% csrf_token %}
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Email:</strong></label>
-                                {{ form.default_email }}
-                            </div>
+                                <div class="row g-3">
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Phone:</strong></label>
-                                {{ form.default_phone_number }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Name:</strong></label>
+                                        {{ form.default_full_name }}
+                                    </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Country:</strong></label>
-                                {{ form.default_country }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Email:</strong></label>
+                                        {{ form.default_email }}
+                                    </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Address Line 1:</strong></label>
-                                {{ form.default_street_address1 }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Phone:</strong></label>
+                                        {{ form.default_phone_number }}
+                                    </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Address Line 2:</strong></label>
-                                {{ form.default_street_address2 }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Country:</strong></label>
+                                        {{ form.default_country }}
+                                    </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label"><strong>Town / City:</strong></label>
-                                {{ form.default_town_or_city }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Address Line 1:</strong></label>
+                                        {{ form.default_street_address1 }}
+                                    </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label"><strong>County:</strong></label>
-                                {{ form.default_county }}
-                            </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><strong>Address Line 2:</strong></label>
+                                        {{ form.default_street_address2 }}
+                                    </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label"><strong>Postcode:</strong></label>
-                                {{ form.default_postcode }}
-                            </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label"><strong>Town / City:</strong></label>
+                                        {{ form.default_town_or_city }}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label"><strong>County:</strong></label>
+                                        {{ form.default_county }}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label"><strong>Postcode:</strong></label>
+                                        {{ form.default_postcode }}
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4 d-flex gap-2">
+                                    <button type="submit" class="btn btn-secondary">
+                                        Save Details
+                                    </button>
+
+                                    <a href="{% url 'account_change_password' %}" class="btn btn-secondary">
+                                        Change Password
+                                    </a>
+                                </div>
+
+                            </form>
 
                         </div>
-
-                        <div class="mt-4 d-flex gap-2">
-
-                            <button type="submit" class="btn btn-secondary">
-                                Save Details
-                            </button>
-
-                            <a href="{% url 'account_change_password' %}" class="btn btn-secondary">
-                                Change Password
-                            </a>
-
-                        </div>
-
-                    </form>
+                    </div>
 
                 </div>
             </div>
