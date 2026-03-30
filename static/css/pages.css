@@ -1,0 +1,13 @@
+/* --- Catalog Page--- */
+
+/* -Form control- */
+
+.form-control:focus {
+  border-color: #6b5e00;
+  box-shadow: 0 0 0 0.3px #4e4500;
+}
+
+.form-select:focus {
+  border-color: #6b5e00;
+  box-shadow: 0 0 0 0.3px #4e4500;
+}
